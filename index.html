@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GVL.AI — AI-First Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --accent: #e8ff47;
+      --accent-dim: rgba(232, 255, 71, 0.08);
+      --text: #f0f0f0;
+      --muted: #666;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Grid overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 8rem 0 6rem;
+      position: relative;
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 850px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.25s forwards;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 2.5rem;
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-proof {
+      margin-top: 3.5rem;
+      display: flex;
+      gap: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.55s forwards;
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .proof-num {
+      font-family: var(--mono);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .proof-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* SECTION */
+    section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    /* WHAT WE DO */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .service-card {
+      background: var(--bg);
+      padding: 2.5rem;
+      transition: background 0.2s;
+    }
+
+    .service-card:hover {
+      background: var(--surface);
+    }
+
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-family: var(--mono);
+      font-weight: 300;
+    }
+
+    /* HOW IT WORKS */
+    .agents-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .agent-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .agent-row:last-child { border-bottom: none; }
+    .agent-row:hover { background: var(--surface); }
+
+    .agent-role {
+      padding: 1.5rem 2rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .agent-desc {
+      padding: 1.5rem 2rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+    }
+
+    /* FOUNDER */
+    .founder-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .founder-block h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .founder-block h2 span {
+      color: var(--accent);
+    }
+
+    .founder-text {
+      padding-top: 0.5rem;
+    }
+
+    .founder-name {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .founder-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-family: var(--mono);
+      font-weight: 300;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 6rem 0;
+      border-bottom: none;
+    }
+
+    .contact-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-inner h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .contact-inner h2 span { color: var(--accent); }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .contact-link:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-tagline {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { padding: 5rem 0 4rem; }
+      .hero-proof { flex-wrap: wrap; gap: 2rem; }
+      .founder-block { grid-template-columns: 1fr; gap: 3rem; }
+      .agent-row { grid-template-columns: 1fr; }
+      .agent-role { border-right: none; border-bottom: 1px solid var(--border); }
+      .contact-inner { flex-direction: column; align-items: flex-start; }
+      footer .container { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a class="logo" href="/">GVL.AI</a>
+      <span class="nav-tag">AI-First Engineering</span>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="container">
+      <p class="hero-label">// Agent-delivered software</p>
+      <h1>Building Software with <em>AI,</em> Not Just About AI</h1>
+      <p class="hero-sub">GVL.AI delivers production software through autonomous AI agent teams — from architecture through deployment. Every deliverable is AI-produced.</p>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <span class="proof-num">100%</span>
+          <span class="proof-label">AI-produced output</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-num">Zero</span>
+          <span class="proof-label">idle token spend</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-num">Live</span>
+          <span class="proof-label">client delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <section>
+    <div class="container">
+      <p class="section-label">// What we do</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>AI Agent Delivery</h3>
+          <p>Purpose-built AI agent crews that plan, code, test, and deploy software autonomously — operating under structured governance, change management, and constitutional execution frameworks.</p>
+        </div>
+        <div class="service-card">
+          <h3>Autonomous Software Development</h3>
+          <p>From presales through delivery. Proposal generation, solution architecture, code implementation, QA, and client handoff — each agent with defined role, scoped authority, and evidence-based completion criteria.</p>
+        </div>
+        <div class="service-card">
+          <h3>Client Projects</h3>
+          <p>Real software development engagements. Faster delivery, lower cost, full transparency — every agent action is logged, auditable, and verifiable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">// How it works</p>
+      <div class="agents-list">
+        <div class="agent-row">
+          <span class="agent-role">Orchestration</span>
+          <span class="agent-desc">Strategic planning and task routing across the full delivery pipeline</span>
+        </div>
+        <div class="agent-row">
+          <span class="agent-role">Infrastructure</span>
+          <span class="agent-desc">DevOps, deployment, and reliability engineering — zero-token nervous system</span>
+        </div>
+        <div class="agent-row">
+          <span class="agent-role">Architecture</span>
+          <span class="agent-desc">Presales, proposals, and technical design — three-number pricing on every engagement</span>
+        </div>
+        <div class="agent-row">
+          <span class="agent-role">Quality</span>
+          <span class="agent-desc">Independent review and audit gates — PASS/FAIL with no softening of findings</span>
+        </div>
+        <div class="agent-row">
+          <span class="agent-role">Communications</span>
+          <span class="agent-desc">Client updates, reporting, and coordination — evidence-backed on every update</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">// About GVL.AI</p>
+      <div class="founder-block">
+        <h2>Built to last.<br /><span>Built to scale.</span></h2>
+        <div class="founder-text">
+          <p class="founder-name">Founder & Technical Lead</p>
+          <p>Building GVL.AI on the premise that AI agents can deliver software at a fraction of traditional cost and timeline, without sacrificing quality. The company runs on the same AI-first principles it delivers to clients — autonomous agents handle operations, infrastructure, and engineering internally, proving the model before selling it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-inner">
+        <h2>Ready to ship<br />with <span>AI agents?</span></h2>
+        <a class="contact-link" href="mailto:info@gouvelis.com">
+          info@gouvelis.com →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">GVL.AI</spa
