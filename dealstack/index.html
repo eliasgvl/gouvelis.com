@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DEALSTACK — GVL.AI</title>
+<style>
+:root{--bg:#fff;--fg:#15171c;--mut:#5f6672;--line:#e3e6ea;--acc:#1a56db;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--fg:#e7e9ee;--mut:#9aa3b2;--line:#252a33;--acc:#7ea8ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.35rem}
+a{color:var(--acc)}
+header{padding:4.5rem 0 3rem;border-bottom:1px solid var(--line)}
+.mark{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 1.1rem}
+h1{font-size:clamp(2.1rem,6vw,3rem);line-height:1.12;letter-spacing:-.02em;margin:0 0 1.2rem}
+.pitch{font-size:1.2rem;line-height:1.6;margin:0;max-width:38rem}
+section{padding:3rem 0;border-bottom:1px solid var(--line)}
+h2{font-size:1.35rem;letter-spacing:-.01em;margin:0 0 1.1rem}
+.lede{font-size:1.08rem}
+.claim{margin:2rem 0;padding:1.35rem 1.5rem;border-left:3px solid var(--acc);background:color-mix(in srgb,var(--acc) 7%,transparent);font-size:1.1rem}
+.claim strong{font-weight:650}
+dl{margin:0}
+dt{font-weight:650;margin:1.7rem 0 .3rem}
+dt:first-of-type{margin-top:0}
+dd{margin:0;color:var(--fg)}
+.stack{display:flex;flex-wrap:wrap;gap:.45rem;margin:0;padding:0;list-style:none}
+.stack li{font:.85rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;padding:.45rem .6rem;border:1px solid var(--line);border-radius:.35rem;color:var(--mut)}
+footer{padding:2.5rem 0 4rem;color:var(--mut);font-size:.92rem}
+footer a{margin-right:.9rem}
+.note{color:var(--mut);font-size:.92rem}
+.cta{margin:2rem 0 .6rem}
+.btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;padding:.8rem 1.5rem;border-radius:.45rem}
+.btn:hover{filter:brightness(1.1)}
+</style></head><body>
+
+<header><div class="wrap">
+<p class="mark">GVL.AI</p>
+<h1>DEALSTACK</h1>
+<p class="pitch">DealStack is the commercial system small businesses never had: what to quote, what to charge, whether to bid, who approves. Designed around AI, not bolted onto the way the work was always done.</p>
+<p class="cta"><a class="btn" href="https://elias-lenovo-ideapad-500-15isk.tail2a501d.ts.net:8443/dealstack-demo/web/proposals">Open the live demo</a></p>
+<p class="note">A live single-node deployment. Sign in with Google.</p>
+</div></header>
+
+<section><div class="wrap">
+<h2>What it does</h2>
+<p class="lede">DEALSTACK takes a request for quotation and returns a priced, audited, client-ready proposal — and it is a <strong>sales system</strong>, not a document generator. It qualifies the opportunity before any work is done, finds the ways the firm could actually deliver it, ranks them and prices those routes comparatively, sends whatever needs a human decision to the person who actually owns it, drafts the proposal, and records the outcome.</p>
+
+<div class="claim"><strong>The architecture claim underneath all of it: the AI reads; it never prices.</strong> One AI pass understands the request. Everything that touches money is deterministic arithmetic over the firm's own cost cards — its rates, its input costs, what it pays subcontractors, its margin policy — checked, audited, and pinned to the quote it produced. Ask why a number is what it is and the answer is a rule chain with a date on it, not a model's confidence score.</div>
+
+<dl>
+<dt>It refuses to guess.</dt>
+<dd>When a cost cannot be computed — an input with no price on file, a resource with no rate, a step nothing is configured for — DEALSTACK stops and names exactly what is missing, instead of producing a plausible number with a hole in it. A price that could not be computed says so.</dd>
+
+<dt>It does not trust its own reading either.</dt>
+<dd>When the reading contradicts itself — the same specification copied onto an item the client described differently — DEALSTACK does not repair the field and carry on. It withdraws it, marks what is missing, raises the question on the operator's checklist and downgrades its own verdict, overriding the model's go-ahead.</dd>
+
+<dt>It catches commercial risk the quoting system was never asked to see.</dt>
+<dd>Sixty-day payment terms, a penalty clause buried in the brief, a rush deadline nobody checked against capacity, a request from a counterparty nobody can identify. The pipeline stops, routes to the named person who owns that decision, records their answer with a timestamp, and prices from it.</dd>
+
+<dt>It treats the sales rep's number as an input, not an interference.</dt>
+<dd>Authority is a configured ladder — the rep's own limit, then a sales director, then whoever owns the account. The approver acts from a signed single-use link without logging in. The rep never sees the margin. He sees whether the price he asked for is allowed, and who has to say yes.</dd>
+
+<dt>It writes down what nobody ever wrote down.</dt>
+<dd>A discount is recorded with the approval level it required and the name of whoever gave it. A deal cannot be closed as lost without a reason. None of that is data entry. It is the record of decisions that were previously made in conversation and then lost.</dd>
+
+<dt>And the reporting is a by-product, not a second product.</dt>
+<dd>Because every quote is priced here, the commercial reporting comes from the same rows: a funnel showing count and value at each stage, with the win rate, and a cash-inflow forecast built from confirmed orders rather than from optimism.</dd>
+
+<dt>It runs on the firm's own terms.</dt>
+<dd>Multi-tenant today: each business gets its own configuration, its own rates, its own protocol — and can run DEALSTACK on its own server against its own model subscription, so the cost structure that took it decades to accumulate never leaves the building.</dd>
+
+<dt>And none of it is specific to an industry.</dt>
+<dd>The engine does not change; the encoded reality does. The first live deployment is a print firm because that is the customer who asked, and the same pipeline prices packaging, signage, fabrication or CNC on different rate cards.</dd>
+</dl>
+</div></section>
+
+<section><div class="wrap">
+<h2>The human decisions that remain</h2>
+<p class="lede">A person confirms what the request actually asks for before anything is priced, and a person approves the number before it reaches a client. Everything between them is handled.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Gemini</h2>
+<p>Gemini runs in the deployed application through Vertex AI on Google Cloud, on a diagnostic path the code deliberately refuses to let become the pipeline's provider. Anthropic models are on the reading path today. The choice of which model reads is deliberately not architectural: <strong>nothing a model returns is ever trusted with a number</strong>, so swapping the reading engine changes no price.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Built with</h2>
+<ul class="stack">
+<li>python</li><li>fastapi</li><li>alpine.js</li><li>gemini</li><li>vertex-ai</li><li>google-cloud</li><li>anthropic</li><li>openai</li><li>sqlite</li><li>weasyprint</li>
+</ul>
+</div></section>
+
+<section><div class="wrap">
+<h2>Signing in</h2>
+<p class="note">DEALSTACK uses Google Sign-In for identity only. It requests no access to Gmail, Drive, Calendar, contacts or any other Google data.</p>
+</div></section>
+
+<footer><div class="wrap">
+<p><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="mailto:elias@gouvelis.com">elias@gouvelis.com</a></p>
+<p>DEALSTACK is a product of GVL.AI. Entered in the Build with Gemini XPRIZE.</p>
+</div></footer>
+
+</body></html>
