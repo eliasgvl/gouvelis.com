@@ -192,6 +192,8 @@
     .service-card {
       background: var(--bg);
       padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
       transition: background 0.2s;
     }
 
@@ -224,7 +226,7 @@
 
     .agent-row {
       display: grid;
-      grid-template-columns: 180px 1fr;
+      grid-template-columns: 15rem 1fr;
       border-bottom: 1px solid var(--border);
       transition: background 0.15s;
     }
@@ -233,7 +235,8 @@
     .agent-row:hover { background: var(--surface); }
 
     .agent-role {
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 1.75rem;
+      line-height: 1.55;
       font-family: var(--mono);
       font-size: 0.7rem;
       color: var(--accent);
@@ -246,6 +249,7 @@
 
     .agent-desc {
       padding: 1.5rem 2rem;
+      line-height: 1.8;
       font-size: 0.875rem;
       color: var(--muted);
       font-family: var(--mono);
@@ -447,7 +451,7 @@
   <section>
     <div class="container">
       <p class="section-label">// How we deliver</p>
-      <p style="color:var(--muted);max-width:640px;margin-bottom:2.5rem;line-height:1.75">Every piece of work is written down before an agent starts it, and nothing is accepted on an agent&rsquo;s own word. This is how we run our own delivery, and it is how DealStack was built.</p>
+      <p style="color:var(--muted);max-width:660px;margin-bottom:2.5rem;line-height:1.8;font-family:var(--mono);font-size:0.875rem;font-weight:300">Every piece of work is written down before an agent starts it, and nothing is accepted on an agent&rsquo;s own word. This is how we run our own delivery, and it is how DealStack was built.</p>
       <div class="agents-list">
         <div class="agent-row">
           <span class="agent-role">1. Write the goal</span>
@@ -458,11 +462,11 @@
           <span class="agent-desc">Each agent works in its own isolated environment, on one brief, with no reach beyond it</span>
         </div>
         <div class="agent-row">
-          <span class="agent-role">3. Have it attacked</span>
+          <span class="agent-role">3. Attack the result</span>
           <span class="agent-desc">A separate reviewer &mdash; a different vendor&rsquo;s model &mdash; tries to break the result. Pass or fail, findings unsoftened</span>
         </div>
         <div class="agent-row">
-          <span class="agent-role">4. Write the evidence down</span>
+          <span class="agent-role">4. Record the evidence</span>
           <span class="agent-desc">Every goal ends in a report: what was measured, what failed, what is still open</span>
         </div>
         <div class="agent-row">
