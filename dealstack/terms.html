@@ -1,66 +1,144 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Terms of Service — DealStack</title>
-<style>body{font:16px/1.65 system-ui,sans-serif;max-width:44rem;margin:0 auto;padding:3rem 1.25rem}h1{font-size:1.6rem;margin:0 0 .25rem}.sub{color:#666;margin:0 0 2rem}h2{font-size:1.05rem;margin:2rem 0 .5rem}footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #ddd;color:#666;font-size:.9rem}</style></head><body>
-<h1>Terms of Service</h1>
-<p class="sub">DealStack, operated by GVL.AI · Last updated 23 August 2026</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — GVL.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#0a0a0a; --surface:#111111; --border:#1e1e1e;
+      --accent:#e8ff47; --text:#f0f0f0; --muted:#666;
+      --mono:'DM Mono',monospace; --sans:'Syne',sans-serif;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.6; overflow-x:hidden; }
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-image:linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+      background-size:60px 60px;
+    }
+    .container { max-width:1100px; margin:0 auto; padding:0 2rem; position:relative; z-index:1; }
+    .narrow { max-width:760px; }
+    a { color:var(--accent); }
+    nav { padding:2rem 0; border-bottom:1px solid var(--border); position:relative; z-index:10; }
+    nav .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-family:var(--mono); font-size:1rem; font-weight:500; color:var(--accent); letter-spacing:.05em; text-decoration:none; }
+    .nav-tag { font-family:var(--mono); font-size:.7rem; color:var(--accent); border:1px solid var(--accent); padding:.3rem .8rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
+    .page-head { padding:5rem 0 3rem; }
+    .page-label { font-family:var(--mono); font-size:.7rem; color:var(--accent); letter-spacing:.2em; text-transform:uppercase; margin-bottom:1.5rem; }
+    h1 { font-size:clamp(2.2rem,5vw,3.6rem); font-weight:800; line-height:1.08; letter-spacing:-.03em; }
+    h1 em { font-style:normal; color:var(--accent); }
+    .lede { margin-top:1.75rem; font-size:1.05rem; color:var(--muted); max-width:640px; line-height:1.8; }
+    .stamp { margin-top:1.25rem; font-family:var(--mono); font-size:.7rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+    .divider { border:none; border-top:1px solid var(--border); margin:0; }
+    section { padding:3.5rem 0; }
+    h2 { font-size:1.35rem; font-weight:700; letter-spacing:-.01em; margin-bottom:1rem; }
+    h2 .n { font-family:var(--mono); font-size:.8rem; color:var(--accent); margin-right:.75rem; font-weight:400; }
+    p { font-family:var(--mono); font-weight:300; font-size:.9rem; line-height:1.9; color:var(--muted); max-width:720px; }
+    p + p { margin-top:1rem; }
+    p strong, li strong { color:var(--text); font-weight:500; }
+    .callout { border:1px solid var(--border); border-left:2px solid var(--accent); background:var(--surface); padding:1.75rem 2rem; margin:2rem 0; }
+    .callout p { color:var(--text); max-width:none; }
+    dl { border:1px solid var(--border); }
+    dt { font-family:var(--mono); font-size:.7rem; color:var(--accent); letter-spacing:.1em; text-transform:uppercase; padding:1.5rem 1.75rem .75rem; }
+    dd { font-family:var(--mono); font-weight:300; font-size:.9rem; line-height:1.9; color:var(--muted); padding:0 1.75rem 1.5rem; border-bottom:1px solid var(--border); }
+    dl > dd:last-of-type { border-bottom:none; }
+    .stack { display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; }
+    .stack li { font-family:var(--mono); font-size:.75rem; color:var(--muted); border:1px solid var(--border); padding:.5rem .75rem; }
+    .cta { margin:2.5rem 0 .75rem; }
+    .btn { display:inline-block; font-family:var(--mono); font-size:.85rem; letter-spacing:.05em; background:var(--accent); color:var(--bg); padding:1rem 2rem; text-decoration:none; font-weight:500; }
+    .btn:hover { opacity:.85; }
+    .note { font-family:var(--mono); font-size:.75rem; color:var(--muted); }
+    footer { border-top:1px solid var(--border); padding:2rem 0; margin-top:2rem; }
+    footer .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+    .footer-logo { font-family:var(--mono); font-size:.8rem; color:var(--muted); }
+    .footer-links { font-family:var(--mono); font-size:.72rem; color:var(--muted); letter-spacing:.05em; }
+    .footer-links a { color:var(--muted); text-decoration:none; }
+    .footer-links a:hover { color:var(--accent); }
+    @media (max-width:768px) {
+      .container { padding:0 1.25rem; }
+      footer .container { flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
 
-<h2>1. The service</h2>
-<p>DealStack is software operated by GVL.AI (Elias Gouvelis) that assists in
-preparing commercial proposals. These terms apply to anyone who signs in and
-uses it.</p>
+  <nav>
+    <div class="container">
+      <a class="logo" href="/">GVL.AI</a>
+      <a class="nav-tag" href="/dealstack/">DealStack &rarr;</a>
+    </div>
+  </nav>
 
-<h2>2. Evaluation access</h2>
-<p>Access granted for demonstration, evaluation or judging is provided free of
-charge, on a shared demonstration environment, with no guarantee of
-availability, retention or support. Do not put confidential or personal data
-into a demonstration environment.</p>
+  <div class="page-head">
+    <div class="container narrow">
+      <p class="page-label">// Legal</p>
+      <h1>Terms of <em>Service</em></h1>
+      <p class="lede">These terms cover the GVL.AI website and the DealStack application. Where a section applies only to DealStack, it says so.</p>
+      <p class="stamp">Last updated 23 August 2026</p>
+    </div>
+  </div>
 
-<h2>3. Your account</h2>
-<p>You sign in with a Google account. You are responsible for what is done under
-your sign-in. Do not share access with people who are not entitled to it.</p>
+  <hr class="divider" />
 
-<h2>4. Acceptable use</h2>
-<p>Do not use DealStack to break the law, to infringe anyone's rights, to upload
-malicious code, or to attempt to gain access to data belonging to another
-organisation. We may suspend access that does any of these.</p>
+  <section>
+    <div class="container narrow">
+      <h2><span class="n">01</span>The service</h2>
+      <p>GVL.AI, operated by Elias Gouvelis, publishes this website and operates DealStack, software that assists in preparing commercial proposals. These terms apply to anyone who uses the site or signs in to the application.</p>
 
-<h2>5. Your content</h2>
-<p>Documents and data you put into DealStack remain yours. You grant us only the
-permission needed to process them in order to run the service for you.</p>
+      <h2 style="margin-top:3rem"><span class="n">02</span>Evaluation access</h2>
+      <p>Access granted for demonstration, evaluation or judging is provided free of charge, on a shared demonstration environment, with <strong>no guarantee of availability, retention or support</strong>. Do not put confidential or personal data into a demonstration environment.</p>
 
-<h2>6. Automated output is a draft</h2>
-<p>DealStack produces prices, text and documents using automated systems,
-including large language models. <strong>Its output is a draft for a human to
-review.</strong> It can be wrong. You are responsible for checking anything the
-system produces before you rely on it, send it to a customer, or enter into a
-contract on the strength of it. GVL.AI accepts no liability for commercial
-decisions taken on unreviewed output.</p>
+      <h2 style="margin-top:3rem"><span class="n">03</span>Your account</h2>
+      <p>You sign in with a Google account. You are responsible for what is done under your sign-in. Do not share access with people who are not entitled to it.</p>
 
-<h2>7. Availability</h2>
-<p>We do not promise the service will be uninterrupted or error-free. We may
-change, suspend or withdraw it.</p>
+      <h2 style="margin-top:3rem"><span class="n">04</span>Acceptable use</h2>
+      <p>Do not use DealStack to break the law, to infringe anyone&rsquo;s rights, to upload malicious code, or to attempt to reach data belonging to another organisation. We may suspend access that does any of these.</p>
 
-<h2>8. No warranty</h2>
-<p>The service is provided "as is", without warranties of any kind to the extent
-the law allows.</p>
+      <h2 style="margin-top:3rem"><span class="n">05</span>Your content</h2>
+      <p>Documents and data you put into DealStack remain yours. You grant us only the permission needed to process them in order to run the service for you.</p>
 
-<h2>9. Liability</h2>
-<p>To the extent the law allows, GVL.AI is not liable for indirect or
-consequential loss, lost profit, or loss of data arising from use of the
-service. Nothing here excludes liability that cannot lawfully be excluded.</p>
+      <div class="callout">
+        <p><strong>06 &nbsp;&mdash;&nbsp; Automated output is a draft.</strong> DealStack produces prices, text and documents using automated systems, including large language models. <strong>Its output is a draft for a human to review.</strong> It can be wrong. You are responsible for checking anything the system produces before you rely on it, send it to a customer, or enter into a contract on the strength of it. GVL.AI accepts no liability for commercial decisions taken on unreviewed output.</p>
+      </div>
 
-<h2>10. Ending access</h2>
-<p>You may stop using the service at any time. We may end access if these terms
-are broken.</p>
+      <h2 style="margin-top:3rem"><span class="n">07</span>Availability</h2>
+      <p>We do not promise the service will be uninterrupted or error-free. We may change, suspend or withdraw it.</p>
 
-<h2>11. Governing law</h2>
-<p>These terms are governed by the law of the Hellenic Republic, and the courts
-of Greece have jurisdiction.</p>
+      <h2 style="margin-top:3rem"><span class="n">08</span>No warranty</h2>
+      <p>The website and the service are provided &ldquo;as is&rdquo;, without warranties of any kind to the extent the law allows.</p>
 
-<h2>12. Contact</h2>
-<p><a href="mailto:elias@gouvelis.com">elias@gouvelis.com</a></p>
+      <h2 style="margin-top:3rem"><span class="n">09</span>Liability</h2>
+      <p>To the extent the law allows, GVL.AI is not liable for indirect or consequential loss, lost profit, or loss of data arising from use of the website or the service. Nothing here excludes liability that cannot lawfully be excluded.</p>
 
-<footer><a href="./">DealStack</a> · <a href="privacy.html">Privacy Policy</a></footer>
-</body></html>
+      <h2 style="margin-top:3rem"><span class="n">10</span>Ending access</h2>
+      <p>You may stop using the service at any time. We may end access if these terms are broken.</p>
+
+      <h2 style="margin-top:3rem"><span class="n">11</span>Governing law</h2>
+      <p>These terms are governed by the law of the Hellenic Republic, and the courts of Greece have jurisdiction.</p>
+
+      <h2 style="margin-top:3rem"><span class="n">12</span>Contact</h2>
+      <p><a href="mailto:info@gouvelis.com">info@gouvelis.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">GVL.AI</span>
+      <span class="footer-links">
+        <a href="/">Home</a> &middot;
+        <a href="/dealstack/">DealStack</a> &middot;
+        <a href="/dealstack/privacy.html">Privacy</a> &middot;
+        <a href="/dealstack/terms.html">Terms</a> &middot;
+        <a href="mailto:info@gouvelis.com">info@gouvelis.com</a>
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>

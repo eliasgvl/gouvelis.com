@@ -1,61 +1,138 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Privacy Policy — DealStack</title>
-<style>body{font:16px/1.65 system-ui,sans-serif;max-width:44rem;margin:0 auto;padding:3rem 1.25rem}h1{font-size:1.6rem;margin:0 0 .25rem}.sub{color:#666;margin:0 0 2rem}h2{font-size:1.05rem;margin:2rem 0 .5rem}footer{margin-top:3rem;padding-top:1rem;border-top:1px solid #ddd;color:#666;font-size:.9rem}</style></head><body>
-<h1>Privacy Policy</h1>
-<p class="sub">DealStack, operated by GVL.AI · Last updated 23 August 2026</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — GVL.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#0a0a0a; --surface:#111111; --border:#1e1e1e;
+      --accent:#e8ff47; --text:#f0f0f0; --muted:#666;
+      --mono:'DM Mono',monospace; --sans:'Syne',sans-serif;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.6; overflow-x:hidden; }
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-image:linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+      background-size:60px 60px;
+    }
+    .container { max-width:1100px; margin:0 auto; padding:0 2rem; position:relative; z-index:1; }
+    .narrow { max-width:760px; }
+    a { color:var(--accent); }
+    nav { padding:2rem 0; border-bottom:1px solid var(--border); position:relative; z-index:10; }
+    nav .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-family:var(--mono); font-size:1rem; font-weight:500; color:var(--accent); letter-spacing:.05em; text-decoration:none; }
+    .nav-tag { font-family:var(--mono); font-size:.7rem; color:var(--accent); border:1px solid var(--accent); padding:.3rem .8rem; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; }
+    .page-head { padding:5rem 0 3rem; }
+    .page-label { font-family:var(--mono); font-size:.7rem; color:var(--accent); letter-spacing:.2em; text-transform:uppercase; margin-bottom:1.5rem; }
+    h1 { font-size:clamp(2.2rem,5vw,3.6rem); font-weight:800; line-height:1.08; letter-spacing:-.03em; }
+    h1 em { font-style:normal; color:var(--accent); }
+    .lede { margin-top:1.75rem; font-size:1.05rem; color:var(--muted); max-width:640px; line-height:1.8; }
+    .stamp { margin-top:1.25rem; font-family:var(--mono); font-size:.7rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+    .divider { border:none; border-top:1px solid var(--border); margin:0; }
+    section { padding:3.5rem 0; }
+    h2 { font-size:1.35rem; font-weight:700; letter-spacing:-.01em; margin-bottom:1rem; }
+    h2 .n { font-family:var(--mono); font-size:.8rem; color:var(--accent); margin-right:.75rem; font-weight:400; }
+    p { font-family:var(--mono); font-weight:300; font-size:.9rem; line-height:1.9; color:var(--muted); max-width:720px; }
+    p + p { margin-top:1rem; }
+    p strong, li strong { color:var(--text); font-weight:500; }
+    .callout { border:1px solid var(--border); border-left:2px solid var(--accent); background:var(--surface); padding:1.75rem 2rem; margin:2rem 0; }
+    .callout p { color:var(--text); max-width:none; }
+    dl { border:1px solid var(--border); }
+    dt { font-family:var(--mono); font-size:.7rem; color:var(--accent); letter-spacing:.1em; text-transform:uppercase; padding:1.5rem 1.75rem .75rem; }
+    dd { font-family:var(--mono); font-weight:300; font-size:.9rem; line-height:1.9; color:var(--muted); padding:0 1.75rem 1.5rem; border-bottom:1px solid var(--border); }
+    dl > dd:last-of-type { border-bottom:none; }
+    .stack { display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; }
+    .stack li { font-family:var(--mono); font-size:.75rem; color:var(--muted); border:1px solid var(--border); padding:.5rem .75rem; }
+    .cta { margin:2.5rem 0 .75rem; }
+    .btn { display:inline-block; font-family:var(--mono); font-size:.85rem; letter-spacing:.05em; background:var(--accent); color:var(--bg); padding:1rem 2rem; text-decoration:none; font-weight:500; }
+    .btn:hover { opacity:.85; }
+    .note { font-family:var(--mono); font-size:.75rem; color:var(--muted); }
+    footer { border-top:1px solid var(--border); padding:2rem 0; margin-top:2rem; }
+    footer .container { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+    .footer-logo { font-family:var(--mono); font-size:.8rem; color:var(--muted); }
+    .footer-links { font-family:var(--mono); font-size:.72rem; color:var(--muted); letter-spacing:.05em; }
+    .footer-links a { color:var(--muted); text-decoration:none; }
+    .footer-links a:hover { color:var(--accent); }
+    @media (max-width:768px) {
+      .container { padding:0 1.25rem; }
+      footer .container { flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
 
-<h2>Who we are</h2>
-<p>DealStack is operated by GVL.AI (Elias Gouvelis). Questions about this policy
-or about your data: <a href="mailto:elias@gouvelis.com">elias@gouvelis.com</a>.</p>
+  <nav>
+    <div class="container">
+      <a class="logo" href="/">GVL.AI</a>
+      <a class="nav-tag" href="/dealstack/">DealStack &rarr;</a>
+    </div>
+  </nav>
 
-<h2>What we collect when you sign in</h2>
-<p>DealStack uses Google Sign-In. When you sign in, Google gives us your email
-address, your name and your profile picture. That is all we receive. We request
-no access to your Gmail, Drive, Calendar, contacts or any other Google service,
-and we cannot read them.</p>
+  <div class="page-head">
+    <div class="container narrow">
+      <p class="page-label">// Legal</p>
+      <h1>Privacy <em>Policy</em></h1>
+      <p class="lede">This policy covers the GVL.AI website and the DealStack application. Where a section applies only to DealStack, it says so.</p>
+      <p class="stamp">Last updated 23 August 2026</p>
+    </div>
+  </div>
 
-<h2>What we do with it</h2>
-<p>We use your email address to identify your account, to decide what you are
-allowed to see, and to attribute actions you take in the application to you. We
-do not use it for marketing. We do not sell it, rent it, or share it with third
-parties for their own purposes.</p>
+  <hr class="divider" />
 
-<h2>What else the application stores</h2>
-<p>DealStack stores the business documents you or your organisation put into it
-— requests for proposal, pricing data, generated proposals — and a log of
-actions taken on them. This content belongs to your organisation. It is kept
-separated per organisation and is not used to train any model.</p>
+  <section>
+    <div class="container narrow">
+      <h2><span class="n">01</span>Who we are</h2>
+      <p>GVL.AI is operated by Elias Gouvelis. DealStack is our product. Questions about this policy, or about data we hold on you: <a href="mailto:info@gouvelis.com">info@gouvelis.com</a>.</p>
 
-<h2>Where it is stored</h2>
-<p>Data is held in a database on infrastructure controlled by GVL.AI or, for
-customers who choose it, on the customer's own server. Access is limited to
-GVL.AI personnel who need it to operate and support the service.</p>
+      <h2 style="margin-top:3rem"><span class="n">02</span>This website</h2>
+      <p>The pages on <strong>gouvelis.com</strong> are static. They set no cookies, run no analytics, and no tracking or advertising scripts. Web fonts are loaded from Google Fonts, which means Google&rsquo;s servers see the request. Nothing else about your visit is recorded by us.</p>
 
-<h2>Third parties</h2>
-<p>DealStack sends the text of documents it is processing to a large language
-model provider (Google Gemini) to generate its output. Google's handling of that
-data is governed by Google's own terms. Google Sign-In is likewise governed by
-Google's privacy policy. We use no advertising or analytics trackers.</p>
+      <h2 style="margin-top:3rem"><span class="n">03</span>Signing in to DealStack</h2>
+      <p>DealStack uses Google Sign-In. When you sign in, Google gives us your <strong>email address, your name and your profile picture</strong>. That is all we receive. We request no access to your Gmail, Drive, Calendar, contacts or any other Google service, and we cannot read them.</p>
+      <p>We use your email address to identify your account, to decide what you are allowed to see, and to attribute actions you take in the application to you. We do not use it for marketing. <strong>We do not sell it, rent it, or share it with third parties for their own purposes.</strong></p>
 
-<h2>How long we keep it</h2>
-<p>Account and business data is kept for as long as the account is active. When
-an account is closed, or on request, we delete it.</p>
+      <h2 style="margin-top:3rem"><span class="n">04</span>What DealStack stores</h2>
+      <p>DealStack stores the business documents you or your organisation put into it &mdash; requests for proposal, pricing data, generated proposals &mdash; and a log of actions taken on them. This content belongs to your organisation. It is kept separated per organisation and <strong>is not used to train any model</strong>.</p>
 
-<h2>Your rights</h2>
-<p>You can ask us what we hold about you, ask us to correct it, or ask us to
-delete it. Write to <a href="mailto:elias@gouvelis.com">elias@gouvelis.com</a>
-and we will act within 30 days. You can also revoke DealStack's access to your
-Google account at any time at
-<a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+      <h2 style="margin-top:3rem"><span class="n">05</span>Where it is held</h2>
+      <p>Data is held in a database on infrastructure controlled by GVL.AI or, for customers who choose it, on the customer&rsquo;s own server. Access is limited to GVL.AI personnel who need it to operate and support the service.</p>
 
-<h2>Cookies</h2>
-<p>We set one session cookie to keep you signed in. There are no tracking or
-advertising cookies.</p>
+      <h2 style="margin-top:3rem"><span class="n">06</span>Third parties</h2>
+      <p>DealStack sends the text of documents it is processing to a large language model provider to generate its output. That provider&rsquo;s handling of the data is governed by its own terms. Google Sign-In is likewise governed by Google&rsquo;s privacy policy. We use no advertising or analytics trackers anywhere.</p>
 
-<h2>Changes</h2>
-<p>If this policy changes, the date at the top of this page changes with it.</p>
+      <h2 style="margin-top:3rem"><span class="n">07</span>How long we keep it</h2>
+      <p>Account and business data is kept for as long as the account is active. When an account is closed, or on request, we delete it.</p>
 
-<footer><a href="./">DealStack</a> · <a href="terms.html">Terms of Service</a></footer>
-</body></html>
+      <h2 style="margin-top:3rem"><span class="n">08</span>Your rights</h2>
+      <p>You can ask us what we hold about you, ask us to correct it, or ask us to delete it. Write to <a href="mailto:info@gouvelis.com">info@gouvelis.com</a> and we will act within 30 days. You can revoke DealStack&rsquo;s access to your Google account at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+      <h2 style="margin-top:3rem"><span class="n">09</span>Cookies</h2>
+      <p>DealStack sets one session cookie to keep you signed in. There are no tracking or advertising cookies, on the application or on this website.</p>
+
+      <h2 style="margin-top:3rem"><span class="n">10</span>Changes</h2>
+      <p>If this policy changes, the date at the top of this page changes with it.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span class="footer-logo">GVL.AI</span>
+      <span class="footer-links">
+        <a href="/">Home</a> &middot;
+        <a href="/dealstack/">DealStack</a> &middot;
+        <a href="/dealstack/privacy.html">Privacy</a> &middot;
+        <a href="/dealstack/terms.html">Terms</a> &middot;
+        <a href="mailto:info@gouvelis.com">info@gouvelis.com</a>
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>
