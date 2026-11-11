@@ -139,3 +139,9 @@ if (!prefersReducedMotion) {
   }, { threshold: 0.6 });
   counters.forEach((el) => counterObserver.observe(el));
 }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
