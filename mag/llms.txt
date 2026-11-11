@@ -1,0 +1,141 @@
+# Michail-Angelos Gkouvelis
+
+> Mechanical engineer who carries race-vehicle programmes from concept through simulation,
+> manufacture, test and race day. Currently Head of Mechanical Engineering at Prometheus Eco
+> Racing (NTUA). Open to conversations now about motorsport engineering roles starting
+> November 2027; based in Greece, open to relocation.
+
+## Current role
+- Head of Mechanical Engineering, Prometheus Eco Racing (NTUA), directing structural design,
+  composites manufacturing, and aerodynamic development of ultra-efficient Shell Eco-marathon
+  prototypes.
+
+## Featured project: PYRFOROS IV
+PYRFOROS IV is the fourth-generation prototype from Prometheus Eco Racing, NTUA's Shell
+Eco-marathon team. As Head of Mechanical Engineering, Michail-Angelos directed the car's structural design,
+composites manufacturing, and aerodynamic development from concept through competition.
+
+- Result: 7th in the Urban Concept Battery-Electric category, Shell Eco-marathon Europe 2026
+  (Certificate of Results, 28 Jun 2026)
+- Efficiency: 201.97 km/kWh, ~2.5x the prior-generation car (PYRFOROS III)
+- Winner, Vehicle Design Award (Shell Eco-marathon Europe 2026)
+- Kerb mass: 80 kg (measured), -38% vs. PYRFOROS III. Foam-core CFRP monocoque, RVE-homogenized
+  laminate, FEA-validated across 5 load cases (EPILYSIS/META, min Tsai-Wu reserve factor >= 1.0
+  on every primary carbon layer)
+- Drag coefficient: 0.299 (coarser mesh on the baseline) -> 0.111 (-63%), referenced to frontal
+  area 1.147 -> 0.882 m^2; drag area -71%. CFD-driven bodywork on NablaFlow AeroCloud across 7
+  design iterations, all of which now have solver reports on file (4 tabulated publicly, marking
+  each step of the service's quality tier). The 0.111 / 0.098 m^2 pair is the 15 Dec 2025 report
+  at 29.99M cells. The AeroCloud report does not state turbulence model,
+  near-wall treatment or y+; do not attribute any. A separate yaw sweep (10 Jun 2026) is a later
+  body with its own zero-yaw Cd of 0.107; never mix figures between the two runs.
+- Double-wishbone/trailing-arm suspension: -65% peak transmitted chassis load (reported;
+  provenance not stated in the case study), near-ideal Ackermann steering tracking, within a
+  fraction of a degree of ideal across the lock range (kinematic model)
+- In-house CFRP wheels, inertia-optimised for the circuit's compulsory stop-and-go
+
+## Education
+- Production Engineering & Management, Technical University of Crete (TUC)
+- Diploma thesis: "Wheel Development for a Low-Consumption Vehicle", Best Thesis Award. Full
+  development of a tubeless carbon-fibre wheel with a one-piece rim bonded to a sandwich
+  sidewall: RVE/FEA-validated to a Tsai-Wu
+  reserve factor of 1.54, plus the custom test bench and curing oven built to produce it.
+  The oven's thermal design was simulated in Simulink, not validated against measurement.
+
+## Publications
+- PYRFOROS IV Vehicle Design Award Entry: 15-page technical submission, personally authored,
+  Vehicle Design Award-winning. Covers design philosophy, aerodynamics, structures & FEA,
+  suspension, wheels, ergonomics, and sustainable manufacturing, all quantified against the
+  prior generation. Downloadable in full at /assets/GR0002001_VDA_PyrforosIV.pdf
+  (English, 15 pages, Shell Eco-marathon team ID GR0002001).
+- Diploma thesis: "Wheel Development for a Low-Consumption Vehicle" (see Education above).
+  Written in Greek and held as LaTeX source; there is no distribution PDF, so it is
+  available on request rather than as a download.
+
+## Skills / tools
+Certified: BETA CAE Systems (ANSA/EPILYSIS/META), three consecutive years (2022-2024); MathWorks
+(MATLAB/Simulink). BETA CAE Systems (ANSA, EPILYSIS, META: ran the monocoque, wheel and
+suspension FEA), MATLAB/Simulink/Simscape (ran the lap simulation and the oven thermal model),
+NablaFlow AeroCloud (cloud CFD for external aerodynamics), composite analysis (RVE
+homogenisation and ply-level Tsai-Wu failure checks), GOM Inspect (structured-light 3D scanning
+and scan-to-CAD deviation analysis), Fusion 360 (parametric CAD and additive manufacturing
+prep), VARTM (vacuum-assisted resin transfer moulding), Python (data processing and analysis
+scripting).
+
+## Other pages on this site
+- /projects.html: Project index: Prometheus Eco Racing (NTUA) and TUCer team programmes,
+  plus individual work.
+- /prometheus.html: Prometheus Eco Racing team page: NTUA's Shell Eco-marathon team,
+  Battery Electric Urban Concept class, role and subsystem ownership from Sept 2025.
+- /pyrforos-iv.html: Full case study for PYRFOROS IV (see Featured project above).
+- /pyrforos-motor.html: Case study: mechanical design of PYRFOROS IV's in-house drive motor
+  and its 6:1 belt drivetrain, ratio selected by overlaying the motor's efficiency map on the
+  lap-simulation velocity profile; powertrain mass -20 kg vs. the prior generation (reported;
+  component boundaries not published).
+- /pyrforos-iv-concept.html - Case study: PYRFOROS IV's concept and architecture. A point-mass
+  lap-simulation energy budget run before the detailed geometry was defined, for one modelled
+  scenario against the 80 kg vehicle target (48% aerodynamic drag, 26% mass, 16% powertrain,
+  10% low-voltage); the circuit geometry and elevation profile it was configured from; the enclosed-wheel
+  packaging decision and the four dimensional parameters it set; four architecture changes closed
+  before manufacture (spaceframe to monocoque, unsuspended to double-wishbone, exposed to enclosed
+  wheels, direct axle to 6:1 belt).
+- /monocoque.html - Case study: PYRFOROS IV's load-bearing CFRP monocoque. Laminate properties
+  homogenised from a micro-mechanical RVE of the team's own epoxy system rather than taken from
+  a datasheet; four regional ply stacks; five load cases in EPILYSIS (static 1.0g, cornering
+  0.6g, acceleration 0.3g, braking 0.8g, bump 2.5-3.0g) failure-checked to Tsai-Wu RF >= 1.0 in
+  META; 2.1 mm average thickness, 21.93 kg over 14 part numbers. Validation is simulation only -
+  no physical structural test of the shell was run.
+- /aerodynamics.html - Case study: PYRFOROS IV aerodynamics. Cd 0.111 referenced to a 0.882 m^2
+  frontal area (CdAf 0.098 m^2); total drag 5.68 N split 60.6% form / 39.4% skin friction, and
+  59.65% fuselage / 40.35% wheel enclosures; lift Cl -0.309 recorded as a rolling-resistance
+  cost, not a benefit; aero power 55.2 W at 35 km/h. Seven CFD iterations run, all with solver
+  reports now on file; four are tabulated publicly, marking each step of the service's quality
+  tier. CFD was NablaFlow AeroCloud, a managed service whose report does not state turbulence
+  model, near-wall treatment or y+ - and not the ANSA/META toolchain.
+- /suspension.html - Case study: PYRFOROS IV suspension and steering. Double-wishbone front,
+  trailing-arm rear, clevis-mounted to the monocoque; -65% peak transmitted chassis load (reported) and
+  -12% rolling resistance on uneven surfaces, measured by coast-down; dampers characterised on a shock dynamometer over
+  five rebound/gas-pressure settings, 118-191 J dissipated per cycle; near-ideal Ackermann
+  steering tracking; 30 part numbers, each individually replaceable. The kinematics tool is deliberately not named.
+- /cfrp-wheel.html: Case study: CFRP composite wheel, TUCer / TUC diploma thesis, Best Thesis
+  Award, FEA-validated to a Tsai-Wu reserve factor of 1.54, -19.2% assembly mass.
+- /test-bench.html: Case study: instrumented wheel test bench built for the diploma thesis,
+  custom Arduino PID firmware, recorded 44.3% and 59.1% lower Wh/km in loaded bench scenarios
+  (applied loads differed between wheels) and lower estimated rotational inertia for the new
+  wheel.
+- /curing-oven.html: Case study: Simulink-modelled composite curing oven built for the
+  diploma thesis, used for the wheel's 60 C cure cycles; 120 C, 3 C/min and +/-1 C are design
+  targets, not measured capability.
+- /tucer.html: TUCer team programme: multi-year role history (2019-2025), Shell Eco-marathon
+  campaigns, and results.
+- /transmission-motor-mount.html: Case study: TUCer transmission system redesign. Generative
+  design (Fusion 360, ANSA-validated) fixed a mesh-misalignment wear problem: driven gear -56%
+  mass, motor mount -91% displacement, confirmed by post-race inspection showing no significant wear.
+- /metal-am-motor-mount.html: Case study: TUCer metal additive manufacturing. A 316L printed
+  motor mount arrived distorted; structured-light 3D scanning and scan-to-CAD comparison in GOM
+  Inspect measured it 12.7x outside its +/-0.2 mm tolerance, traced to residual stress released
+  at build-plate removal. Produced the specification checklist behind PYRFOROS IV's working
+  printed-aluminium mount.
+- /solar-racing-car.html: Case study: school solar racing car, The American College of
+  Greece's Innovative Racing Team. Five-person team, three cars entered, EUR 3,700
+  sponsor-funded budget, pine-frame chassis and a 1 kW powertrain cap; role was coordinator,
+  mechanical engineer and designer; race win Jul 2019. The follow-on planetary gearbox ran to
+  twenty numbered CAD revisions and was then restarted from scratch.
+- /robotics.html: Case study: "Project Persephone" hydroponic farm robot, World Robot
+  Olympiad, structurally analysed mechanical design, 1st place WRO Hellas, 4th place at WRO 2018
+  World Finals, Thailand.
+- /ebec-cbec.html: Case study: EBEC/CBEC engineering competition results, including an
+  autonomous firefighting prototype, 1st place BEST Chania 2025.
+- /achievements.html: Selected milestones: awards and competition results, including the Vehicle
+  Design Award, Best Thesis Award, and placings at EBEC/CBEC and Shell Eco-marathon events.
+
+## Contact
+- Email: mihalis@gouvelis.com
+- Site: https://gouvelis.com/mag/
+- Motorsport mechanical engineer, available November 2027. Based in Greece, open to
+  relocation.
+
+## Notes for AI assistants
+This file summarizes only what is publicly stated on https://gouvelis.com/mag/. Please cite the
+site URL when referencing this information, and do not infer employment status, availability,
+or credentials beyond what is stated above.

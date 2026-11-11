@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transmission System Redesign — Michail-Angelos Gkouvelis</title>
+<meta name="description" content="TUCer transmission redesign: a motor mount and driven gear developed using generative design to fix a wear problem — -56% gear mass, -91% mount displacement.">
+<meta name="author" content="Michail-Angelos Gkouvelis">
+
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0d10">
+<link rel="canonical" href="https://gouvelis.com/mag/transmission-motor-mount.html">
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Transmission System Redesign — Michail-Angelos Gkouvelis">
+<meta property="og:description" content="TUCer transmission redesign: a motor mount and driven gear developed using generative design to fix a wear problem — -56% gear mass, -91% mount displacement.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+<meta property="og:url" content="https://gouvelis.com/mag/transmission-motor-mount.html">
+<meta property="og:locale" content="en_US">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Transmission System Redesign — Michail-Angelos Gkouvelis">
+<meta name="twitter:description" content="TUCer transmission redesign: a motor mount and driven gear developed using generative design to fix a wear problem — -56% gear mass, -91% mount displacement.">
+<meta name="twitter:image" content="assets/img/og-cover.jpg">
+<meta name="twitter:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo-mark.png" alt="M-A.G logo" class="logo-mark" width="56" height="56">
+      <span class="logo-text">GKOUVELIS</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="projects.html">← All Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section case-hero">
+    <div class="container" data-reveal>
+      <p class="case-eyebrow"><a href="tucer.html" class="case-eyebrow-link">TUCer</a> / Analysis &amp; Design · Technical University of Crete</p>
+      <h1 class="case-title case-title-sm">Transmission System Redesign<span class="dot">.</span></h1>
+      <p class="case-lede">A motor mount and driven gear developed using generative design, to fix a mesh-misalignment wear problem in TUCer's transmission — from root-cause diagnosis through post-race validation.</p>
+      <img src="assets/img/transmission-parts-comparison.jpg" alt="New motor mount, shaft, and driven gear (top/left) next to the original parts they replaced (bottom/right)" class="case-photo case-photo-uncropped" width="1468" height="1279">
+      <p class="fig-caption">FIG. 01 &mdash; New vs. old motor mount, shaft, and driven gear</p>
+    </div>
+
+    <div class="case-stat-bar">
+      <dl class="container case-stat-bar-inner case-stat-bar-3">
+        <div class="case-stat">
+          <dt>Context</dt>
+          <dd>Analysis &amp; Design &mdash; TUCer</dd>
+        </div>
+        <div class="case-stat">
+          <dt>Driven gear mass</dt>
+          <dd>-<span class="case-stat-accent" data-count="56" data-decimals="0">56</span><span class="unit unit-accent">%</span></dd>
+        </div>
+        <div class="case-stat">
+          <dt>Motor mount displacement, simulated</dt>
+          <dd>-<span class="case-stat-accent" data-count="91" data-decimals="0">91</span><span class="unit unit-accent">%</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">01</span>
+        <h2 class="section-title">How the drive is arranged</h2>
+      </div>
+      <div class="case-cols case-cols-wide">
+        <div class="case-prose">
+          <p>The load path is short: motor, bracket, frame. That bracket is the only thing standing between the two, which makes it the single part setting both the gear centre distance and the parallelism of the shafts either side of the mesh. And the driven gear is overhung &mdash; carried on one side only, with no second bearing outboard of it.</p>
+          <p>Those two facts together are what turn mount stiffness into a transmission problem rather than a bracket problem. Supporting a gear on both sides would carry most of that tilt in its own bearings; in this overhung arrangement, deflection of the mount arrives at the mesh directly, as angular misalignment. Misalignment then concentrates tooth contact toward one end of the face instead of spreading it evenly across the full width &mdash; which is what the annotated photo below shows, the wear boundary running at an angle across the teeth rather than square to them. Accelerated wear and lost efficiency follow from there.</p>
+          <p>The original bracket was 3D-printed CF-PET-G, chosen for mass. That was the wrong objective for this part. Its only real job is to hold two shafts where the design put them, which is a stiffness requirement &mdash; and it had been optimised against something else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">02</span>
+        <h2 class="section-title">Root cause</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>The team had observed wear on the transmission's gears and suspected the motor mount was flexing enough under load to matter. Given the arrangement above that was a reasonable place to look, but at that point it was still a hypothesis, not a diagnosis.</p>
+          <p>A computational simulation predicted mount deflection under the operating forces large enough to misalign the gears, consistent with the tooth-contact pattern in FIG. 02 &mdash; a hypothesis the analysis supported, rather than one the team was still guessing at.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/transmission-worn-teeth.jpg" alt="Macro photo of gear teeth worn from angular misalignment, with the wear angle annotated" class="case-photo case-photo-case-detail" width="976" height="626">
+          <figcaption>FIG. 02 &mdash; Worn teeth from angular misalignment, annotated</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">03</span>
+        <h2 class="section-title">Generative design &amp; manufacturing</h2>
+      </div>
+      <div class="case-cols case-cols-reverse">
+        <figure class="case-figure">
+          <img src="assets/img/transmission-installed.jpg" alt="New motor mount and gear installed on the vehicle" class="case-photo case-photo-case-detail" width="976" height="732">
+          <figcaption>FIG. 03 &mdash; New motor mount and gear installed on the vehicle</figcaption>
+        </figure>
+        <div class="case-prose">
+          <p>Both the motor mount and the driven gear were generative-designed in Fusion 360 against explicit targets &mdash; max stiffness, a safety factor of 2, a 0.5 kg mass limit and 1 mm max displacement for the mount, a stricter 0.27 kg limit for the gear &mdash; and validated in ANSA. The algorithm explored 74 gear candidates and 32 motor mount candidates before one design per component was selected for refinement.</p>
+          <p>The gear itself is a two-piece assembly: a 6061 aluminium hub with a bolt-on 7075 aluminium outer ring carrying the teeth. If a tooth is damaged, only the outer ring needs replacing &mdash; a serviceability decision, not just a mass one. Manufacturing was constrained accordingly: 2.5/3-axis CNC milling for the mount, a wider range of milling, cutting, and additive processes for the gear. Both parts were cut by <a href="https://mosychlon.gr/en/machining/" target="_blank" rel="noopener">Mosychlon</a>, who still show them on their machining page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">04</span>
+        <h2 class="section-title">Results</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>The redesigned driven gear cut mass by 56% (1,198.8&nbsp;g &rarr; 523.1&nbsp;g) and rotational inertia by 52%. The reported energy to accelerate it at 35&nbsp;km/h falls from 63.0&nbsp;J to 27.8&nbsp;J.</p>
+          <p>The new motor mount &mdash; machined from stainless steel in place of 3D-printed carbon-fibre PETG &mdash; added 13% mass (438 g &rarr; 496 g), but cut peak simulated displacement under the acceleration load case by 91% (0.189 mm &rarr; 0.0166 mm), addressing the alignment problem at its source rather than its symptoms.</p>
+          <p>That stiffness was bought with stress margin, and the trade belongs in the result rather than out of it: peak stress in the same load case rose from 2.115 MPa to 8.08 MPa, up 282%. It was a judgement call and a comfortable one &mdash; 8.08 MPa sits far below AISI 304's ~215 MPa yield, so there was margin available to spend, and deflection was the failure mode that was actually costing the team gears.</p>
+          <p>The 13% mass was a debt, though, not an oversight. In 2024 the same component <a href="metal-am-motor-mount.html">was re-attempted as a metal 3D print</a> to pay it back &mdash; an attempt that failed, and taught more than this one did.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/transmission-fea-displacement.jpg" alt="ANSA FEA contour plot showing motor mount displacement under the acceleration reaction load case" class="case-photo case-photo-case-detail" width="976" height="471">
+          <figcaption>FIG. 04 &mdash; ANSA FEA: motor mount displacement under acceleration load</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section case-section-last">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">05</span>
+        <h2 class="section-title">Validation</h2>
+      </div>
+      <div class="case-cols case-cols-reverse">
+        <figure class="case-figure">
+          <img src="assets/img/transmission-post-race.jpg" alt="Close-up of the new gear train after a race, showing no significant wear" class="case-photo case-photo-case-detail" width="976" height="733">
+          <figcaption>FIG. 05 &mdash; New gear train post-race, no significant wear</figcaption>
+        </figure>
+        <div class="case-prose">
+          <p>Inspected after a race, the new gear train showed no significant wear &mdash; real-world confirmation that fixing the alignment problem worked, not just a simulated prediction.</p>
+          <p>Quantifying the transmission-level efficiency gain precisely is difficult without a completed back-to-back powertrain test, which wasn't finished. The team's own estimate is that the alignment improvement is worth an additional ~10% efficiency &mdash; stated here as that: an estimate with no published derivation, not a measured result.</p>
+        </div>
+      </div>
+      <nav class="case-nav" aria-label="Case study navigation">
+        <a href="projects.html" class="case-nav-back">← All projects</a>
+        <a href="metal-am-motor-mount.html" class="case-nav-next">Next: Metal AM Motor Mount →</a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Michail-Angelos Gkouvelis</p>
+    <a href="index.html" class="footer-home-link">← Back to home</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

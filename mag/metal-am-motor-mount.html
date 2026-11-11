@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metal AM Motor Mount — Specification, Distortion, and What It Produced — Michail-Angelos Gkouvelis</title>
+<meta name="description" content="TUCer additive manufacturing case study: a 316L printed motor mount measured at 12.7 times its permitted deviation by 3D scanning and GOM Inspect — reverse-engineering metrology used as inspection — and the specification lesson it produced.">
+<meta name="author" content="Michail-Angelos Gkouvelis">
+
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0d10">
+<link rel="canonical" href="https://gouvelis.com/mag/metal-am-motor-mount.html">
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Metal AM Motor Mount — Specification, Distortion, and What It Produced — Michail-Angelos Gkouvelis">
+<meta property="og:description" content="TUCer additive manufacturing case study: a 316L printed motor mount measured at 12.7 times its permitted deviation by 3D scanning and GOM Inspect — reverse-engineering metrology used as inspection — and the specification lesson it produced.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+<meta property="og:url" content="https://gouvelis.com/mag/metal-am-motor-mount.html">
+<meta property="og:locale" content="en_US">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Metal AM Motor Mount — Specification, Distortion, and What It Produced — Michail-Angelos Gkouvelis">
+<meta name="twitter:description" content="TUCer additive manufacturing case study: a 316L printed motor mount measured at 12.7 times its permitted deviation by 3D scanning and GOM Inspect — reverse-engineering metrology used as inspection — and the specification lesson it produced.">
+<meta name="twitter:image" content="assets/img/og-cover.jpg">
+<meta name="twitter:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo-mark.png" alt="M-A.G logo" class="logo-mark" width="56" height="56">
+      <span class="logo-text">GKOUVELIS</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="projects.html">← All Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section case-hero">
+    <div class="container" data-reveal>
+      <p class="case-eyebrow"><a href="tucer.html" class="case-eyebrow-link">TUCer</a> / Additive Manufacturing &amp; Metrology &middot; Technical University of Crete</p>
+      <h1 class="case-title case-title-sm">Metal AM Motor Mount<span class="dot">.</span></h1>
+      <p class="case-lede">A generatively-designed motor mount ordered as a 316L metal 3D print, to recover the mass its machined predecessor had cost. It arrived distorted, measured at worst +2.54&nbsp;mm against a +0.20&nbsp;mm limit, 12.7 times the permitted deviation, and never went on the car &mdash; what it produced instead was a specification.</p>
+      <img src="assets/img/gom-deviation-map.png" alt="GOM Inspect deviation map of the scanned motor mount against its CAD model, coloured from -1.27 mm blue through green to +0.92 mm yellow, with a +2.54 mm callout at a lower bore" class="case-photo img-slot-case-compact" width="1600" height="572" loading="eager" fetchpriority="high" decoding="async">
+      <p class="fig-caption">FIG. 01 &mdash; Scan-to-CAD deviation map, &minus;1.27 to +0.92&nbsp;mm, against a &plusmn;0.2&nbsp;mm requirement</p>
+    </div>
+
+    <div class="case-stat-bar">
+      <dl class="container case-stat-bar-inner case-stat-bar-3">
+        <div class="case-stat">
+          <dt>Context</dt>
+          <dd>Metal AM &amp; Metrology &mdash; TUCer</dd>
+        </div>
+        <div class="case-stat">
+          <dt>Tolerance required</dt>
+          <dd>&plusmn;<span data-count="0.2" data-decimals="1">0.2</span> <span class="unit">mm</span></dd>
+        </div>
+        <div class="case-stat">
+          <dt>Worst feature: +2.54 mm vs. +0.20 mm</dt>
+          <dd><span class="case-stat-accent" data-count="12.7" data-decimals="1">12.7</span><span class="unit unit-accent">&times;</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">01</span>
+        <h2 class="section-title">Why additive, and what was ordered</h2>
+      </div>
+      <div class="case-cols case-cols-wide">
+        <div class="case-prose">
+          <p>The <a href="transmission-motor-mount.html">machined AISI 304 mount that fixed TUCer's gear-misalignment problem</a> fixed it the expensive way. Stiffness had to come from a dense material in a shape a 3-axis mill could reach, so the part landed at 496&nbsp;g against the 438&nbsp;g printed CF-PET-G bracket it replaced &mdash; 13.2% heavier, on a car whose entire design premise is energy efficiency.</p>
+          <p>Metal additive manufacturing was the obvious way to break that trade. Generative design produces organic, branching load paths; milling flattens them back into whatever a cutter can reach. A printer lifts most of that constraint, within its own limits on build volume, supports, orientation and finishing. So in 2024 the same component was re-ordered in 316L stainless from <a href="https://conify.gr/" target="_blank" rel="noopener">Conify</a>, a metal AM startup, and redesigned at their request to fit inside their build volume.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">02</span>
+        <h2 class="section-title">What arrived, measured</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>The part looked wrong, so it was measured rather than argued about. It was scanned on a Revopoint POP 2 structured-light scanner and compared to the nominal CAD in GOM Inspect 2018 against the &plusmn;0.2&nbsp;mm the assembly needed on its critical dimensions. That comparison is reverse engineering run backwards &mdash; instead of building geometry from a physical part, the same scanner and software measure a physical part against geometry that already exists.</p>
+          <p>Surface deviation ran from &minus;1.27&nbsp;mm to +0.92&nbsp;mm: a 2.19&nbsp;mm measured band against the 0.40&nbsp;mm allowed, 5.5&times; too wide overall, with the worst single feature at +2.54&nbsp;mm on a bore &mdash; 12.7&times; the tolerance. Several critical dimensions were out. The part could not be mounted on the vehicle. A calliper closed across the as-built bosses confirmed the scan by hand, independently of the software.</p>
+          <p>Worth saying plainly, because it sets a floor on what this kind of evidence costs: a consumer-grade scanner and a free copy of GOM Inspect produced measurements a supplier acted on. The errors were millimetre-scale, an order of magnitude above the noise floor &mdash; the measurement never needed to be finer than the tools were.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/metal-am-caliper-check.jpg" alt="A vernier calliper closed on a square as-built boss of the printed motor mount, checking the scan result by hand" class="case-photo img-slot-case-detail" width="976" height="600" loading="lazy" decoding="async">
+          <figcaption>FIG. 02 &mdash; Caliper across an as-built boss: the scan confirmed by hand</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">03</span>
+        <h2 class="section-title">Reading the deviation field</h2>
+      </div>
+      <div class="case-cols case-cols-reverse">
+        <figure class="case-figure">
+          <img src="assets/img/metal-am-printed-part.jpg" alt="The two square mounting feet of the 3D-printed 316L stainless motor mount, each circled in red marker to flag it as out of tolerance" class="case-photo case-photo-uncropped" width="1600" height="571" loading="lazy" decoding="async">
+          <figcaption>FIG. 03 &mdash; The two mounting feet circled: outer bosses at the end of the load path, and the features that would not fit</figcaption>
+        </figure>
+        <div class="case-prose">
+          <p>The deviation field is coherent, not random, which is what points the diagnosis. The centre body pulls inward while the outer bosses push outward, and the largest errors sit at the extremities and at the bores nearest the plate interface. Random scatter would point at process noise or a bad scan. A field with a direction points at a force.</p>
+          <p>That force is residual stress, which the supplier also identified as the likely cause. Laser powder bed fusion melts and re-solidifies the part layer by layer, locking stress into it while the build plate holds it flat. Cut it free and it springs to a new equilibrium &mdash; which is exactly the shape the scan shows. Distortion after plate removal is not an exotic outcome; it is a known and controllable L-PBF failure mode.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">04</span>
+        <h2 class="section-title">A CAD file is not a specification</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>The supplier reached the same root cause independently, and named the reason it had not been prevented: nothing had been supplied beyond the geometry and the request to make that geometry printable within their build volume. With no tolerances stated, their workflow was never built to control distortion after plate removal.</p>
+          <p>That is a fair account, and the split is worth stating honestly. Our side: the part went out as geometry, not a specification &mdash; no tolerances, no datum scheme, no critical-feature callouts, no machining stock on the interfaces that had to fit, no mechanical property requirements. A full drawing existed for the machined version; no equivalent requirement set went out with the AM order. Their side: this failure mode is controllable, and without a stated tolerance there was no reason to build the orientation and stress-relief strategy that contains it.</p>
+          <p>Machining survives that gap, because a machinist works to nominal geometry and general tolerances are conventional. Additive does not. The process carries its own distortion physics, and it is the supplier who chooses the orientation, supports, stress relief and post-processing that control them &mdash; so withhold the requirements and they will optimise for the only thing they were given, which is printability. There was no reprint: the exchange ended with the supplier asking for the specification that should have gone out with the order in the first place.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/gom-tolerance-passfail.png" alt="The same scan comparison rendered as Pass/Warn/Fail/Extreme bands against a ±0.2 mm tolerance: almost the whole part reads dark-red 'extreme', with only isolated green patches passing" class="case-photo img-slot-case-detail" width="976" height="600" loading="lazy" decoding="async">
+          <figcaption>FIG. 04 &mdash; The same scan banded Pass / Warn / Fail against &plusmn;0.2&nbsp;mm &mdash; the tolerance the order never carried</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section case-section-last">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">05</span>
+        <h2 class="section-title">What it produced</h2>
+      </div>
+      <div class="case-cols case-cols-wide">
+        <div class="case-prose">
+          <p>No reprint followed, so the machined AISI 304 mount stayed the part of record. What came out of this instead was a checklist: leave machining stock on every tolerance-bearing feature and finish it afterwards; define datums and tolerances before release rather than discovering them at assembly; treat distortion as a design input, because knowing where a part pulls in and pushes out tells you where to leave that stock; and route any manufacturability change back for review instead of accepting it at the supplier's end.</p>
+          <p>The conclusion that matters is the one that is easy to get wrong from a failed print: this as-built part did not hold the assembly’s critical tolerances, but additive was never the problem. Let the printer build the organic load-carrying structure it is uniquely good at, then machine the handful of flat and round features that actually have to fit.</p>
+          <p>The TUCer mount was machined in 2023 and re-attempted as a metal print in 2024. The lessons then informed a different motor mount, on a different car, in 2026. That last one is <a href="pyrforos-motor.html">PYRFOROS IV's motor mount, 3D-printed aluminium with machined faces</a>: 181&nbsp;g, in service. Different team, different car, and none of this part carried over &mdash; what crossed was the specification practice, which is the only thing that could have.</p>
+          <p>One postscript, because it is more disarming than either half alone: the part now appears on <a href="https://conify.gr/" target="_blank" rel="noopener">Conify's homepage</a>. It photographs well. It did not fit.</p>
+        </div>
+      </div>
+      <nav class="case-nav" aria-label="Case study navigation">
+        <a href="projects.html" class="case-nav-back">← All projects</a>
+        <a href="solar-racing-car.html" class="case-nav-next">Next: Solar Racing Car →</a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Michail-Angelos Gkouvelis</p>
+    <a href="index.html" class="footer-home-link">← Back to home</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

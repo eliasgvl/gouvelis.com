@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Composite Curing Oven — Michail-Angelos Gkouvelis</title>
+<meta name="description" content="TUCer diploma thesis: Simulink-modelled composite curing oven, 0.55 m3 working volume and a 120 C design target, built and used for the CFRP wheel's 60 C cure cycles.">
+<meta name="author" content="Michail-Angelos Gkouvelis">
+
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0d10">
+<link rel="canonical" href="https://gouvelis.com/mag/curing-oven.html">
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Composite Curing Oven — Michail-Angelos Gkouvelis">
+<meta property="og:description" content="TUCer diploma thesis: Simulink-modelled composite curing oven, 0.55 m3 working volume and a 120 C design target, built and used for the CFRP wheel's 60 C cure cycles.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+<meta property="og:url" content="https://gouvelis.com/mag/curing-oven.html">
+<meta property="og:locale" content="en_US">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Composite Curing Oven — Michail-Angelos Gkouvelis">
+<meta name="twitter:description" content="TUCer diploma thesis: Simulink-modelled composite curing oven, 0.55 m3 working volume and a 120 C design target, built and used for the CFRP wheel's 60 C cure cycles.">
+<meta name="twitter:image" content="assets/img/og-cover.jpg">
+<meta name="twitter:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo-mark.png" alt="M-A.G logo" class="logo-mark" width="56" height="56">
+      <span class="logo-text">GKOUVELIS</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="projects.html">← All Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section case-hero">
+    <div class="container" data-reveal>
+      <p class="case-eyebrow"><a href="tucer.html" class="case-eyebrow-link">TUCer</a> / Diploma thesis · Technical University of Crete</p>
+      <h1 class="case-title case-title-sm">Composite Curing Oven<span class="dot">.</span></h1>
+      <p class="case-lede">A purpose-built oven to produce the <a href="cfrp-wheel.html">CFRP wheel's</a> carbon-fibre components — thermal design modelled and sized in Simulink before the first panel was cut.</p>
+      <img src="assets/img/curing-oven-built.jpg" alt="Inside the oven's foil-lined chamber: a carbon-fibre rim sits on a rack under red vacuum bagging, with two thermocouple leads run in through the chamber wall" class="case-photo img-slot-case" width="1600" height="619" loading="eager" fetchpriority="high" decoding="async">
+      <p class="fig-caption">FIG. 01 &mdash; A rim curing under vacuum bagging inside the finished oven</p>
+    </div>
+
+    <div class="case-stat-bar">
+      <dl class="container case-stat-bar-inner">
+        <div class="case-stat">
+          <dt>Context</dt>
+          <dd>Diploma Thesis — TUCer</dd>
+        </div>
+        <div class="case-stat">
+          <dt>Working volume</dt>
+          <dd><span class="case-stat-accent" data-count="0.55" data-decimals="2">0.55</span> m&sup3;</dd>
+        </div>
+        <div class="case-stat">
+          <dt>Design target, max temperature</dt>
+          <dd><span class="case-stat-accent" data-count="120" data-decimals="0">120</span><span class="unit unit-accent">&deg;C</span></dd>
+        </div>
+        <div class="case-stat">
+          <dt>Role</dt>
+          <dd>Sole designer &amp; builder</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">01</span>
+        <h2 class="section-title">Requirements &amp; thermal model</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>The brief: hold up to 120&deg;C, ramp at up to 3&deg;C/min, and stay within &plusmn;1&deg;C once stable &mdash; tight enough to cure the wheel's resin reliably without over- or under-curing any part of it.</p>
+          <p>Before building anything, I modelled the oven as a lumped-parameter thermal network in Simulink/Simscape's Foundation Library thermal domain, with its elements named for the real materials in the build: five thermal masses &mdash; Coil, Air, Insulation Board, Rock Wool, and OSB &mdash; linked by three conduction paths and two convection paths, with an ambient temperature source and a controlled heat-flow source driving the network. The loop simulated is the loop that got built: commanded cure profile &rarr; smoothing &rarr; PID &rarr; PWM &rarr; the plant, with measured temperature fed back to close it.</p>
+          <p>A 1600&nbsp;W thermal power source, switched by the controller&rsquo;s PWM duty cycle and integrated to kWh, turned the model into a sizing tool for insulation and installed power rather than a simple temperature check. Different insulation materials and thicknesses were traded off against that power budget in simulation before the first panel was cut &mdash; landing on 1.6&nbsp;kW installed (2&times;800&nbsp;W elements) against a simulated average draw of about 300&nbsp;W for a typical cure profile, for ramp margin and headroom to scale up later.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/curing-oven-thermal-model.png" alt="Simulink block diagram of the oven's lumped thermal network: a PWM-switched 1600 W source feeding capacitance nodes for coil, air, insulation board, rock wool and OSB in series to ambient, with a kWh integrator branch" class="case-photo img-slot-case-detail" width="976" height="600" loading="lazy" decoding="async">
+          <figcaption>FIG. 02 &mdash; Lumped-parameter thermal model</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">02</span>
+        <h2 class="section-title">Build</h2>
+      </div>
+      <div class="case-cols case-cols-reverse">
+        <figure class="case-figure">
+          <img src="assets/img/curing-oven-shell-controls.jpg" alt="The oven's OSB shell with a plywood controller enclosure and a magenta E-STOP box sitting on the lid, wiring running between them, and the foil-lined chamber below with the circulation fan grille in its ceiling" class="case-photo img-slot-case-detail" width="976" height="600" loading="lazy" decoding="async">
+          <figcaption>FIG. 03 &mdash; Oven shell &amp; control build</figcaption>
+        </figure>
+        <div class="case-prose">
+          <p>The chamber is 940 &times; 970 &times; 600&nbsp;mm (0.55&nbsp;m&sup3; working volume): an 18&nbsp;mm OSB shell with seams sealed in aluminium tape, lined with 30&nbsp;mm of chimney-grade rockwool insulation. Two 1&nbsp;&Omega;, 800&nbsp;W DC resistance elements (2 &times; 800&nbsp;W) provide heat, with forced-air circulation and two K-type thermocouples (air and wall) feeding a PID loop that drives a MOSFET power stage via PWM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section case-section-last">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">03</span>
+        <h2 class="section-title">In production use</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>Simulated performance met spec: both temperature plateaus (80&deg;C and 120&deg;C) held with small steady-state error, and the target ramp rate was achievable within the installed power budget.</p>
+          <p>In real use, the oven ran every one of the wheel's cure cycles &mdash; 16 hours at 60&deg;C per the resin manufacturer's spec &mdash; and the moulds it cured against showed no deformation or wear across those cycles. Measured thermocouple logs to pair directly against the simulated profile are still on the list to capture.</p>
+          <p>The cured wheel components went on to the <a href="test-bench.html">instrumented test bench</a> for energy, inertia and strength testing. No numerical correlation of measured strain or deflection against the FEA was run.</p>
+        </div>
+      </div>
+      <nav class="case-nav" aria-label="Case study navigation">
+        <a href="projects.html" class="case-nav-back">← All projects</a>
+        <a href="transmission-motor-mount.html" class="case-nav-next">Next: Transmission System Redesign →</a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Michail-Angelos Gkouvelis</p>
+    <a href="index.html" class="footer-home-link">← Back to home</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
