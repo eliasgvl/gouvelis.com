@@ -2,6 +2,7 @@
   "name": "Michail-Angelos Gkouvelis — Portfolio",
   "short_name": "Gkouvelis",
   "description": "Mechanical engineering portfolio: concept to race day.",
+  "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
