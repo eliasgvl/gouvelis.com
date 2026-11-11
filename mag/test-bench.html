@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wheel Test Bench — Michail-Angelos Gkouvelis</title>
+<meta name="description" content="TUCer diploma thesis: instrumented wheel test bench, custom Arduino PID firmware — recorded 44.3% and 59.1% lower Wh/km in loaded bench tests, on unmatched applied loads, and lower estimated rotational inertia for the new wheel.">
+<meta name="author" content="Michail-Angelos Gkouvelis">
+
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0d10">
+<link rel="canonical" href="https://gouvelis.com/mag/test-bench.html">
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wheel Test Bench — Michail-Angelos Gkouvelis">
+<meta property="og:description" content="TUCer diploma thesis: instrumented wheel test bench, custom Arduino PID firmware — recorded 44.3% and 59.1% lower Wh/km in loaded bench tests, on unmatched applied loads, and lower estimated rotational inertia for the new wheel.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+<meta property="og:url" content="https://gouvelis.com/mag/test-bench.html">
+<meta property="og:locale" content="en_US">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wheel Test Bench — Michail-Angelos Gkouvelis">
+<meta name="twitter:description" content="TUCer diploma thesis: instrumented wheel test bench, custom Arduino PID firmware — recorded 44.3% and 59.1% lower Wh/km in loaded bench tests, on unmatched applied loads, and lower estimated rotational inertia for the new wheel.">
+<meta name="twitter:image" content="assets/img/og-cover.jpg">
+<meta name="twitter:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo-mark.png" alt="M-A.G logo" class="logo-mark" width="56" height="56">
+      <span class="logo-text">GKOUVELIS</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="projects.html">← All Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section case-hero">
+    <div class="container" data-reveal>
+      <p class="case-eyebrow"><a href="tucer.html" class="case-eyebrow-link">TUCer</a> / Diploma thesis · Technical University of Crete</p>
+      <h1 class="case-title case-title-sm">Wheel Test Bench<span class="dot">.</span></h1>
+      <p class="case-lede">A multi-purpose instrumented rig, designed and built to experimentally validate the <a href="cfrp-wheel.html">CFRP wheel</a> — energy consumption, rotational inertia, and structural strength, all on one rig with custom PID control firmware.</p>
+      <img src="assets/img/test-bench-photo.jpg" alt="The assembled wheel test bench: T-slot aluminium frame, wheel mounted for testing, motor, and electronics enclosure with E-STOP button" class="case-photo case-photo-uncropped" width="988" height="741" loading="lazy" decoding="async">
+      <p class="fig-caption">FIG. 01 &mdash; Test bench, assembled and ready for testing</p>
+    </div>
+
+    <div class="case-stat-bar">
+      <dl class="container case-stat-bar-inner">
+        <div class="case-stat">
+          <dt>Context</dt>
+          <dd>Diploma Thesis — TUCer</dd>
+        </div>
+        <div class="case-stat">
+          <dt>Energy per distance, loaded bench tests</dt>
+          <dd>&minus;<span class="case-stat-accent" data-count="44.3" data-decimals="1">44.3</span><span class="unit unit-accent">%</span> and &minus;<span class="case-stat-accent" data-count="59.1" data-decimals="1">59.1</span><span class="unit unit-accent">%</span><span class="unit">nominal 40 kg; applied load varied between wheels</span></dd>
+        </div>
+        <div class="case-stat">
+          <dt>Control</dt>
+          <dd>Arduino PID, 10 Hz telemetry</dd>
+        </div>
+        <div class="case-stat">
+          <dt>Role</dt>
+          <dd>Sole designer &amp; builder</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">01</span>
+        <h2 class="section-title">Mechanical design</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>The frame is built from T-slot aluminium profile — reconfigurable without permanent machining, and precise enough to align the motor axis with the wheel under test. Vertical load comes from a screw-driven scissor-lift that presses the tyre onto a contact surface; a rotational joint adds lateral load for cornering scenarios. A force sensor monitors the applied load throughout.</p>
+          <p>The wheel mounts replicate the vehicle's own mounts for a quick swap between wheels. The rig carries a composite debris-containment dome and a hardware E-STOP (normally-closed loop, immediate PWM cutoff). Every part was made in the school machine shop with basic operations — drilling, milling, turning — so the whole rig stays serviceable.</p>
+          <p>Every new-design wheel run through this rig was first cured in the team's <a href="curing-oven.html">purpose-built curing oven</a>.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/test-bench-lift-mechanism-cad.jpg" alt="CAD render of the scissor-lift and roller loading mechanism, detail view" class="case-photo case-photo-uncropped" width="976" height="781">
+          <figcaption>FIG. 02 &mdash; Scissor-lift &amp; roller loading mechanism</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">02</span>
+        <h2 class="section-title">Electronics &amp; firmware</h2>
+      </div>
+      <div class="case-cols case-cols-reverse">
+        <figure class="case-figure">
+          <img src="assets/img/test-bench-cad-render.jpg" alt="CAD assembly render of the wheel test bench showing the motor and electronics enclosure" class="case-photo case-photo-uncropped" width="768" height="768">
+          <figcaption>FIG. 03 &mdash; Motor &amp; electronics enclosure, CAD assembly</figcaption>
+        </figure>
+        <div class="case-prose">
+          <p>A 48 V, 1 kW supply drives a 750 W BLDC motor coaxial with the wheel. An Arduino Uno is the central controller: it reads a Hall-effect current sensor (self-zeroing at boot), a photo-interrupter tachometer, and the load cell, then streams 10 Hz CSV telemetry over serial &mdash; time, mode, reference and measured speed, throttle, voltages, raw and filtered current, RPM, fault and E-STOP state.</p>
+          <p>The firmware I wrote supports three modes &mdash; manual throttle, closed-loop PID speed hold, and linear speed-ramp profiles &mdash; with derivative-on-measurement to avoid setpoint kick, conditional integration with rail-aware anti-windup, and a throttle slew limiter, all tunable live over serial. A companion Python script automates batches of runs, detecting when the wheel has actually stopped before starting the next repetition.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">03</span>
+        <h2 class="section-title">Experiment protocol</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>Old and new wheels were run through four repeated scenarios &mdash; {no load, 40&nbsp;kg} &times; {constant throttle, constant 35&nbsp;km/h} &mdash; for statistical reliability. Each run's telemetry was converted to SI units, split into drive/steady/decel phases by throttle and acceleration thresholds, then integrated over time: current and power to charge (Ah) and energy (Wh), speed to distance, with energy divided by distance giving Wh/km.</p>
+          <p>Rotational inertia was estimated by fitting the dynamics equation &alpha; = A&middot;I &minus; &beta;<sub>1</sub>&omega; &minus; &beta;<sub>2</sub>&omega;&sup2; &minus; &beta;<sub>3</sub> by ordinary least squares against every drive-phase sample, where A &asymp; k<sub>t</sub>/J. With the same motor torque constant and gains, comparing A between wheels gives the estimated inertia ratio J<sub>new</sub>/J<sub>old</sub> &asymp; A<sub>old</sub>/A<sub>new</sub>, where I is current, &alpha; angular acceleration and &omega; angular velocity, with a 95% confidence interval from the log-ratio's standard error. Fit quality across the four experiments was R&sup2; &asymp; 0.69&ndash;0.84.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/test-bench-speed-current.png" alt="Time-series plot of the 40 kg constant-35 km/h run: both wheels track the same speed ramp and plateau, while wheel A draws a steady current of about 4.9 A against wheel B's 2.75 A. Axis labels are in Greek" class="case-photo img-slot-case-detail" width="976" height="600" loading="lazy" decoding="async">
+          <figcaption>FIG. 04 &mdash; Measured speed &amp; current, 40&nbsp;kg at 35&nbsp;km/h. Axis labels are in Greek: time (s) on the horizontal axis, speed (km/h) and current (A) on the vertical; wheel A is the old wheel and wheel B the new one.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section case-section-last">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">04</span>
+        <h2 class="section-title">Results</h2>
+      </div>
+      <div class="case-cols case-cols-reverse">
+        <figure class="case-figure">
+          <img src="assets/img/test-bench-energy-inertia.png" alt="Two-panel bar chart. Top: specific energy in Wh/km on a log scale for wheel A versus wheel B across four scenarios, annotated -44.3%, -59.1%, -12.8% and +2.5%. Bottom: the inertia ratio J_B/J_A at 0.671, 0.534, 0.837 and 0.891, all below the dashed parity line" class="case-photo img-slot-case-detail" width="976" height="600" loading="lazy" decoding="async">
+          <figcaption>FIG. 05 &mdash; Specific energy &amp; inertia ratio by scenario</figcaption>
+        </figure>
+        <div class="case-prose">
+          <p>Under 40&nbsp;kg load, the new wheel used 44.3% less energy at constant speed (6.95 &rarr; 3.87&nbsp;Wh/km) and 59.1% less under constant-throttle acceleration (9.43 &rarr; 3.86&nbsp;Wh/km). Without load the gap narrowed, as expected &mdash; rolling losses dominate less of the total. The inertia ratio J<sub>new</sub>/J<sub>old</sub> stayed below 1 in all four scenarios (0.53&ndash;0.89), consistent with the wheel's own mass reduction.</p>
+          <p>Strength testing on the same bench: a pressure test held 20% over operating pressure with no cracks or deformation on inspection, and a fatigue test ran 40&nbsp;kg at maximum speed for a duration equal to three race lengths with no visible damage afterwards.</p>
+          <p><em>Caveat, stated in the thesis itself: applied load wasn't perfectly matched between wheels in the loaded scenarios (25&ndash;40&nbsp;kg vs. 20&ndash;40&nbsp;kg, due to eccentricity), so the loaded energy comparisons are read with that reservation.</em></p>
+        </div>
+      </div>
+      <nav class="case-nav" aria-label="Case study navigation">
+        <a href="projects.html" class="case-nav-back">← All projects</a>
+        <a href="curing-oven.html" class="case-nav-next">Next: Composite Curing Oven →</a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Michail-Angelos Gkouvelis</p>
+    <a href="index.html" class="footer-home-link">← Back to home</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

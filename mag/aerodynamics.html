@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PYRFOROS IV Aerodynamics & CFD — Michail-Angelos Gkouvelis</title>
+  <meta name="description"
+    content="PYRFOROS IV aerodynamics: Cd 0.111 on a 0.882 m2 frontal area, a component-level drag audit that justified enclosing all four wheels, lift treated as a cost, and what a managed CFD service does not tell you.">
+  <meta name="author" content="Michail-Angelos Gkouvelis">
+
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0b0d10">
+  <link rel="canonical" href="https://gouvelis.com/mag/aerodynamics.html">
+
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PYRFOROS IV Aerodynamics & CFD — Michail-Angelos Gkouvelis">
+  <meta property="og:description"
+    content="PYRFOROS IV aerodynamics: Cd 0.111 on a 0.882 m2 frontal area, a component-level drag audit that justified enclosing all four wheels, lift treated as a cost, and what a managed CFD service does not tell you.">
+  <meta property="og:image" content="assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+    content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+  <meta property="og:url" content="https://gouvelis.com/mag/aerodynamics.html">
+  <meta property="og:locale" content="en_US">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PYRFOROS IV Aerodynamics & CFD — Michail-Angelos Gkouvelis">
+  <meta name="twitter:description"
+    content="PYRFOROS IV aerodynamics: Cd 0.111 on a 0.882 m2 frontal area, a component-level drag audit that justified enclosing all four wheels, lift treated as a cost, and what a managed CFD service does not tell you.">
+  <meta name="twitter:image" content="assets/img/og-cover.jpg">
+  <meta name="twitter:image:alt"
+    content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <link rel="apple-touch-icon" href="assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo-mark.png" alt="M-A.G logo" class="logo-mark" width="56" height="56">
+        <span class="logo-text">GKOUVELIS</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="projects.html">← All Projects</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section case-hero">
+      <div class="container" data-reveal>
+        <p class="case-eyebrow"><a href="prometheus.html" class="case-eyebrow-link">Prometheus Eco Racing</a> / PYRFOROS IV subsystem &middot; NTUA</p>
+        <h1 class="case-title case-title-sm">Aerodynamics &amp; CFD<span class="dot">.</span></h1>
+        <p class="case-lede">A lap simulation said 48% of the energy went to drag before any surface existed, so the exterior was treated as the primary efficiency lever rather than a styling exercise. What follows is where the remaining drag actually sits, what the shape costs as well as what it saves, and what the solver did not tell us.</p>
+        <img src="assets/img/pyrforos-iv-cfd-wake-comparison.png"
+          alt="Two stacked CFD total-pressure sections: the previous car above, trailing a wide yellow and orange wake far downstream, and PYRFOROS IV below, whose wake collapses to a thin streak just behind the tail"
+          class="case-photo img-slot-case" width="992" height="384" loading="eager" fetchpriority="high"
+          decoding="async">
+        <p class="fig-caption">FIG. 01 &mdash; Total pressure coefficient, PYRFOROS III (top) vs. PYRFOROS IV (bottom)
+        </p>
+      </div>
+
+      <div class="case-stat-bar">
+        <dl class="container case-stat-bar-inner">
+          <div class="case-stat">
+            <dt>Drag coefficient</dt>
+            <dd><span class="case-stat-accent" data-count="0.111" data-decimals="3">0.111</span><span class="unit">on
+                A<sub>f</sub> 0.882 m&sup2;</span></dd>
+          </div>
+          <div class="case-stat">
+            <dt>Drag area</dt>
+            <dd><span class="case-stat-accent" data-count="0.098" data-decimals="3">0.098</span><span
+                class="unit">m&sup2;, &minus;71%</span></dd>
+          </div>
+          <div class="case-stat">
+            <dt>Total drag</dt>
+            <dd><span class="case-stat-accent" data-count="5.68" data-decimals="2">5.68</span><span class="unit">N at 35
+                km/h</span></dd>
+          </div>
+          <div class="case-stat">
+            <dt>Aero power</dt>
+            <dd><span class="case-stat-accent" data-count="55.2" data-decimals="1">55.2</span><span class="unit">W, from
+                ~193 W</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section case-section">
+      <div class="container" data-reveal>
+        <div class="case-section-head">
+          <span class="case-number">01</span>
+          <h2 class="section-title">Three weeks, closed loop</h2>
+        </div>
+        <div class="case-cols case-cols-reverse">
+          <div class="case-prose">
+            <p>The exterior programme ran as a closed loop on a three-week clock, and the loop is the claim &mdash; not the number at the end of it. Each candidate went: geometry generated in CAD, checked for kinematic clearance against the steering and suspension envelope, checked for composite manufacturability, then
+              submitted for CFD with results back the same working day. Anything that failed one of the first two checks never reached the solver.</p>
+            <p>That ordering is deliberate. A shape that is 3% better and cannot be infused without fibre bridging at a concave transition is not 3% better; it is unbuildable, and finding that out after the CFD is how a freeze slips. When the shape froze on Day 21 it had been simultaneously satisfied on aerodynamic performance, steering and suspension packaging, regulatory dimensional limits and manufacturability, with no post-freeze rework.</p>
+            <p>The record shows seven exterior versions run across that window, and complete solver reports now exist for all of them. Four &mdash; marking each step of the service's quality tier, with dates, cell counts, frontal areas and the step where C<sub>d</sub> went up while C<sub>d</sub>A<sub>f</sub> came down &mdash; are tabulated on the <a href="pyrforos-iv.html">PYRFOROS IV case study</a>.</p>
+          </div>
+          <figure class="case-figure">
+
+            <img src="assets/img/pyrforos-iv-cfd-streamlines.png"
+              alt="CFD result over the PYRFOROS IV body: streamlines wrapping the fastback shape, with a red high-pressure region at the nose and blue accelerated flow over the shoulders"
+              class="case-photo img-slot-case-detail" width="956" height="593" loading="lazy" decoding="async">
+            <figcaption>FIG. 02 &mdash; Surface pressure &amp; streamlines, frozen geometry (15 Dec 2025 run) &mdash;
+              static; the same run is explorable in full below</figcaption>
+          </figure>
+        </div>
+
+        <img src="assets/img/pyrforos-iv-body-iterations.png"
+          alt="Three dark CAD renders of the body side by side, left to right: a blunt high-shouldered form, an intermediate shape with a flatter deck, and the final low fastback with a long rear taper"
+          class="case-photo img-slot-case" width="1320" height="511" loading="lazy" decoding="async">
+        <p class="fig-caption">FIG. 03 &mdash; Body geometry at iterations V1, V3 and V7</p>
+      </div>
+    </section>
+
+    <section class="section case-section">
+      <div class="container" data-reveal>
+        <div class="case-section-head">
+          <span class="case-number">02</span>
+          <h2 class="section-title">Explore the CFD results</h2>
+        </div>
+        <p class="case-prose-note">The frozen-geometry run above (15 Dec 2025), explorable interactively: the 209,433-triangle surface mesh &mdash; decimated from the 1.67M-triangle AeroCloud export &mdash; five selectable colour fields, 350 streamlines and four pressure isosurfaces. Auto-rotating; drag to orbit, scroll to zoom. Colour ramps are labelled low/high only, because the exported fields carry no scale.</p>
+        <div class="fv" data-flow-viewer data-src="assets/data/pyrforos-flow/">
+          <div class="fv-fields">
+            <span class="fv-lbl">Surface</span>
+            <div class="fv-seg">
+              <button data-field="plain" aria-pressed="true">UNCOLOURED</button>
+              <button data-field="pressure" aria-pressed="false">PRESSURE</button>
+              <button data-field="drag" aria-pressed="false">DRAG</button>
+              <button data-field="friction" aria-pressed="false">FRICTION</button>
+              <button data-field="heat_transfer" aria-pressed="false">HEAT TRANSFER</button>
+              <button data-field="curle_noise_db" aria-pressed="false">CURLE NOISE</button>
+            </div>
+          </div>
+
+          <div class="fv-stage">
+            <canvas class="fv-canvas"></canvas>
+            <span class="fv-corner fv-c1"></span><span class="fv-corner fv-c2"></span>
+            <span class="fv-corner fv-c3"></span><span class="fv-corner fv-c4"></span>
+
+            <div class="fv-ctl">
+              <div class="fv-grp">Layers</div>
+              <button data-layer="sl" aria-pressed="false">STREAMLINES</button>
+              <button data-layer="iso" aria-pressed="false">ISOSURFACES</button>
+              <hr>
+              <button class="fv-rot" aria-pressed="true">AUTO-ROTATE</button>
+              <button class="fv-reset">RESET VIEW</button>
+            </div>
+
+            <div class="fv-legends">
+              <div class="fv-leg fv-leg-surf">
+                <span class="fv-nm fv-surf-name">Pressure</span>
+                <div class="fv-ramp fv-ramp-surf"></div>
+                <div class="fv-ends"><span>low</span><span>high</span></div>
+              </div>
+
+              <div class="fv-leg fv-leg-sl" hidden>
+                <span class="fv-nm fv-sl-name">Streamline scalar</span>
+                <div class="fv-ramp fv-ramp-sl"></div>
+                <div class="fv-ends"><span>low</span><span>high</span></div>
+              </div>
+              <div class="fv-leg fv-leg-iso" hidden>
+                <span class="fv-nm">Pressure isosurfaces</span>
+                <div class="fv-shells fv-iso-key"></div>
+                <div class="fv-ends" style="width:79px"><span>low</span><span>high</span></div>
+              </div>
+            </div>
+
+            <div class="fv-scale">
+              <div class="fv-tick" style="width:120px"></div>
+              <div class="fv-slab">1 m</div>
+            </div>
+
+            <div class="fv-load">
+              <div>READING FLOW FIELD</div>
+              <div class="fv-bar"><i></i></div>
+            </div>
+          </div>
+        </div>
+
+        <script src="assets/js/vendor/three.min.js"></script>
+        <script src="assets/js/flow-viewer.js"></script>
+
+      </div>
+    </section>
+
+    <section class="section case-section">
+      <div class="container" data-reveal>
+        <div class="case-section-head">
+          <span class="case-number">03</span>
+          <h2 class="section-title">Where the drag actually is</h2>
+        </div>
+        <div class="case-cols">
+          <div class="case-prose">
+            <p>At the frozen shape and zero yaw, total drag is <strong>5.68&nbsp;N</strong>. That number is only useful once it is broken apart, and it breaks two ways.</p>
+            <p>By mechanism: 3.44&nbsp;N of form and pressure drag against 2.24&nbsp;N of skin friction &mdash; 60.6% to 39.4%. Both contributions informed the development priorities, and the pressure share is the larger of the two. Every junction on this body is tangent- or curvature-continuous for that reason, and the wheel enclosures are grown out of the fuselage surface rather than added as fairings, so the silhouette is unbroken in both side and plan view.</p>
+            <p>By component: the fuselage shell accounts for 3.386&nbsp;N and the four wheel enclosures for 2.290&nbsp;N of a 5.676&nbsp;N total &mdash; <strong>40.35% of all drag from wheels that are already fully concealed</strong>. No exposed-wheel variant was solved, so that figure does not measure the enclosure benefit itself; what it does is make the enclosures the priority for further development, and it went on to set track width, wheelbase and the steering geometry, because the enclosure envelope and the <a href="suspension.html">steering lock</a> are the same packaging problem.</p>
+          </div>
+          <div class="case-scope-card">
+            <span class="case-scope-label">Drag breakdown, 0&deg; yaw</span>
+            <ul class="case-scope-list">
+              <li>Form / pressure &mdash; 3.44 N (60.6%)</li>
+              <li>Skin friction &mdash; 2.24 N (39.4%)</li>
+              <li>Fuselage shell &mdash; 3.386 N (59.65%)</li>
+              <li>Four wheel enclosures &mdash; 2.290 N (40.35%)</li>
+              <li><strong>Total &mdash; 5.676 N</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section case-section">
+      <div class="container" data-reveal>
+        <div class="case-section-head">
+          <span class="case-number">04</span>
+          <h2 class="section-title">Lift, logged as a cost</h2>
+        </div>
+        <div class="case-cols">
+          <div class="case-prose">
+            <p>The frozen body generates a small net downforce: F<sub>l</sub>&nbsp;=&nbsp;&minus;15.76&nbsp;N, C<sub>l</sub>&nbsp;=&nbsp;&minus;0.309. That is about 2.0% of the 80&nbsp;kg car&rsquo;s weight, or 1.1% of the 150&nbsp;kg vehicle-and-driver weight the <a href="suspension.html">suspension</a> work uses.</p>
+            <p>On a car chasing lap time that sentence would be a selling point. Here it is a debit. Normal load is what rolling resistance is proportional to, and rolling resistance and mass are 26% of the lap energy budget &mdash; so it adds to the normal-load-dependent part of that allocation, not to the allocation as a whole. It was accepted because it stayed inside that allocation. Its effect on stability is not established by this data: the <a href="pyrforos-iv.html">yaw sweep</a> is a later body and returns positive lift at several angles. But it is recorded as a cost that was accepted, not as a benefit that was engineered, and the two are not the same claim.</p>
+            <p>The efficiency the whole exercise was for: aerodynamic power demand at the 9.72&nbsp;m/s (35&nbsp;km/h) competition cruise fell from roughly 193&nbsp;W on the previous car to <strong>55.2&nbsp;W</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section case-section case-section-last">
+      <div class="container" data-reveal>
+        <div class="case-section-head">
+          <span class="case-number">05</span>
+          <h2 class="section-title">What the CFD establishes &mdash; and what it does not</h2>
+        </div>
+        <div class="case-cols">
+          <div class="case-prose">
+            <p>All of the above comes from NablaFlow AeroCloud, a managed cloud CFD service. I set up the geometry, the domain conditions and the run quality; the service meshed it and solved it. That division matters for reading the numbers, so here is the whole setup.</p>
+            <p>The frozen-geometry run is dated 15 December 2025, on AeroCloud platform version v7 &mdash; the platform's version, not design iteration V7 &mdash; at the service's <em>Pro</em> quality tier, on 29,990,000 cells. Air at &rho;&nbsp;=&nbsp;1.225&nbsp;kg/m&sup3; and &nu;&nbsp;=&nbsp;14.6&nbsp;cSt, free stream 9.72&nbsp;m/s, moving ground plane and active wheel rotation both enabled, model envelope 3.357&nbsp;&times;&nbsp;1.283&nbsp;&times;&nbsp;1.051&nbsp;m and wetted area 15.3952&nbsp;m&sup2;. On body length that gives Re&nbsp;=&nbsp;2.235&nbsp;&times;&nbsp;10<sup>6</sup>.</p>
+            <p>What the report does not give is the part a reader with a CFD background will want first: <strong>no turbulence model, no near-wall treatment, no y+ distribution.</strong> It states only that the results are calculated from the time-averaged flow field, and warns of modelling, discretization and iteration error. The report does not specify them &mdash; they are absent from what came back, not withheld here. Anyone weighing a C<sub>d</sub> of 0.111 on a 0.882&nbsp;m&sup2; frontal area should weigh that alongside it.</p>
+            <p>Nor is the run history a mesh-independence study. The four tabulated iterations step through the service's quality tiers &mdash; Basic at 5.0&nbsp;M cells, Standard at 16.0&nbsp;M and 15.9&nbsp;M, Pro at 29.99&nbsp;M &mdash; which is a cost strategy: cheap runs to explore the shape, one expensive run to settle it. The geometry changed between runs at the same time as the cell count, so neither variable is isolated and the progression cannot be read as convergence. 29.99&nbsp;M cells is a mesh size, not a justification.</p>
+            <p>One last piece of bookkeeping. I hold BETA CAE certification in ANSA, EPILYSIS and META, and that toolchain is what ran the <a href="monocoque.html">monocoque FEA</a>. It is not what ran this. The CFD here is AeroCloud, and the two should not be folded together just because both say &ldquo;simulation&rdquo;.</p>
+          </div>
+        </div>
+        <nav class="case-nav" aria-label="Case study navigation">
+          <a href="monocoque.html" class="case-nav-back">← Monocoque &amp; composites</a>
+          <a href="suspension.html" class="case-nav-next">Next: Suspension &amp; steering →</a>
+        </nav>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Michail-Angelos Gkouvelis</p>
+      <a href="index.html" class="footer-home-link">← Back to home</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

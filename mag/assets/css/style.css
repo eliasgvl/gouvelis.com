@@ -1,0 +1,2230 @@
+/* ==========================================================================
+   Design tokens — "Pit Wall" theme
+   ========================================================================== */
+:root {
+  --bg: #0b0d10;
+  --bg-raised: rgba(255, 255, 255, 0.02);
+  --fg: #e9edf1;
+  --text-body: #b7c0c9;
+  --muted: #96a1ad;
+  --muted-2: #757f8c;
+  --accent: #63c3e9;
+  --accent-bright: #a3ddf5;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --font-sans: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --container: 1240px;
+}
+
+/* ==========================================================================
+   Cross-document view transitions (progressive enhancement — unsupported
+   browsers just get an instant navigation, same as before). Disabled under
+   reduced motion since browser-default handling of that isn't guaranteed.
+   ========================================================================== */
+@media not (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-group(root) {
+    animation-duration: 220ms;
+  }
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, dl, dd { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 12px 16px;
+  z-index: 1000;
+  font-weight: 600;
+}
+.skip-link:focus { left: 24px; top: 24px; }
+
+.dot { color: var(--accent); }
+
+.unit { font-size: 1rem; font-weight: 500; color: var(--muted); margin-left: 2px; }
+.unit-accent { color: var(--accent); }
+
+/* ==========================================================================
+   Background texture
+   ========================================================================== */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(99, 195, 233, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 195, 233, 0.045) 1px, transparent 1px),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 4px);
+  background-size: 72px 72px, 72px 72px, 6px 6px;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 195, 233, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(99, 195, 233, 0); }
+}
+
+/* ==========================================================================
+   Header / Nav
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  background: rgba(11, 13, 16, 0.8);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+}
+.logo-mark { width: 26px; height: 26px; object-fit: contain; }
+.logo-text {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+}
+
+.site-nav { display: flex; align-items: center; }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-menu a {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+.nav-menu a:hover,
+.nav-menu a:focus-visible { color: var(--fg); }
+.nav-menu a.is-active:not(.nav-contact) { color: var(--accent); }
+
+.nav-menu a.nav-contact {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 9px 16px;
+  border-radius: 3px;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+.nav-menu a.nav-contact:hover,
+.nav-menu a.nav-contact:focus-visible { background: var(--accent-bright); color: var(--bg); }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin-inline: auto;
+  background: var(--fg);
+}
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-inner {
+  padding: 110px 32px 72px;
+  position: relative;
+}
+
+.availability {
+  margin: 0 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(99, 195, 233, 0.35);
+  padding: 8px 14px;
+  border-radius: 999px;
+  max-width: 100%;
+}
+.availability-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  max-width: 900px;
+}
+
+.hero-role {
+  margin: 24px 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.hero-tagline {
+  margin: 28px 0 44px;
+  max-width: 560px;
+  color: var(--text-body);
+  font-size: 1.1rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hero-watermark {
+  position: absolute;
+  top: 40px;
+  /* Sat at right:-40px, which put 40px of it outside .container. Invisible as a
+     bug at 1440 because the container has margin either side, but between about
+     1272px and 1320px that 40px is past the viewport edge and the page scrolls
+     sideways. Flush to the container instead — a 40px shift of a 10%-opacity
+     decorative mark, against a horizontal scrollbar on narrow laptops. */
+  right: 0;
+  width: 560px;
+  height: 560px;
+  max-width: 45vw;
+  max-height: 45vw;
+  object-fit: contain;
+  opacity: 0.1;
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .hero-watermark { display: none; }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  border: 1px solid transparent;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: var(--accent-bright); color: var(--bg); }
+.btn-primary:focus-visible { outline-color: var(--fg); }
+
+.btn-ghost { border-color: rgba(255, 255, 255, 0.2); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-outline {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  border-color: rgba(99, 195, 233, 0.5);
+  color: var(--accent);
+  padding: 10px 18px;
+  min-height: 44px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+.btn-outline:hover { background: rgba(99, 195, 233, 0.12); color: var(--accent); }
+
+/* Telemetry strip */
+.telemetry {
+  border-top: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+.telemetry-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.telemetry-stat { padding: 28px 32px; border-right: 1px solid var(--border); }
+.telemetry-stat:first-child { padding-left: 0; }
+.telemetry-stat:last-child { padding-right: 0; border-right: none; }
+.telemetry-stat dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 10px;
+}
+.telemetry-stat dd {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+/* The award stat's value is markup as a bare .unit-accent span (no numeral
+   sibling), so without this it inherits .unit's 1rem instead of the dd's
+   own 2rem — rendering the strongest credential at half the size of the
+   others. :only-child scopes the override to that one case. */
+.telemetry-stat dd .unit-accent:only-child { font-size: 2rem; }
+
+/* ==========================================================================
+   Shared section header
+   ========================================================================== */
+.section .container { padding-top: 88px; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 16px;
+  margin-bottom: 48px;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   About
+   ========================================================================== */
+.about-grid {
+  max-width: 720px;
+}
+
+.about-bio p { margin: 0 0 20px; color: var(--text-body); font-size: 1.05rem; }
+.about-bio p:last-child { margin-bottom: 0; }
+
+/* ==========================================================================
+   The cycle band (index.html, between #about and #project)
+   --------------------------------------------------------------------------
+   Four stages of one engineering loop, each linking the page that proves the
+   stage happened. Deliberately built from the same vocabulary as
+   .case-stat-bar-inner — a 4-up grid with hairline dividers — rather than a
+   new sizing system; both share the single-column mobile rule further down,
+   so the two cannot drift apart at the breakpoint. A step with no page behind
+   it does not belong here: the link is the point, not decoration.
+   ========================================================================== */
+.cycle-lede { margin: 0 0 8px; color: var(--muted); font-size: 0.98rem; max-width: 720px; }
+.cycle-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.cycle-step {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 28px;
+  border-right: 1px solid var(--border);
+}
+.cycle-step:first-child { padding-left: 0; }
+.cycle-step:last-child { padding-right: 0; border-right: none; }
+.cycle-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cycle-step h3 { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.35; }
+.cycle-step p { margin: 0; flex: 1; color: var(--muted); font-size: 0.9rem; }
+.cycle-step-link {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+}
+.cycle-step-link:hover,
+.cycle-step-link:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ==========================================================================
+   Featured Project
+   ========================================================================== */
+.fig-caption {
+  margin: 12px 0 48px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.project-lede { margin: 0 0 32px; color: var(--text-body); font-size: 1.05rem; max-width: 840px; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.project-body { min-width: 0; }
+.project-body p { margin: 0 0 28px; color: var(--text-body); font-size: 1.05rem; }
+
+.project-highlights li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+.project-highlights li:last-child { margin-bottom: 0; }
+.project-highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.project-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: var(--bg-raised);
+}
+
+.project-stat {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  row-gap: 4px;
+  padding: 26px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.project-stat:last-child { border-bottom: none; }
+
+.project-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  white-space: nowrap;
+}
+
+.project-stat-value {
+  font-family: var(--font-mono);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-left: auto;
+}
+.project-stat-value .unit { font-size: 0.85rem; }
+
+/* The award is the strongest credential in the panel, so it stands out by
+   size and colour, not a different container — but its value is long
+   enough to wrap, which breaks the label-left/value-right row every other
+   stat uses. Give it its own stacked block instead of forcing that row. */
+.project-stat-award {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.project-stat-value-award {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.3;
+  color: var(--accent);
+  text-align: left;
+}
+.project-award-mark {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 195, 233, 0.2);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.project-actions-link {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+.project-actions-link:hover,
+.project-actions-link:focus-visible { color: var(--fg); }
+
+/* ==========================================================================
+   Image placeholders (swap for real <img> tags once photos are available)
+   ========================================================================== */
+.img-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px dashed var(--border-strong);
+  border-radius: 6px;
+  background: var(--bg-raised);
+  color: var(--muted-2);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 24px;
+}
+.img-slot-hero { width: 100%; aspect-ratio: 1240 / 480; }
+.img-slot-gallery { width: 100%; aspect-ratio: 494 / 300; }
+
+/* Real photos — same box sizes as the placeholders above, once a photo exists */
+.case-photo {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  /* An <img> with width/height attributes gets them as presentational hints.
+     width is overridden above, but without this an img-slot-* ratio class —
+     those were written for <div> placeholders, which have no such attributes —
+     loses to the height hint and the photo renders at its file height instead
+     of the slot's aspect ratio. The .case-photo-* aliases below already carry
+     height: auto for the same reason; this hoists it to every .case-photo. */
+  height: auto;
+}
+.case-photo-case { aspect-ratio: 1240 / 480; height: auto; }
+.case-photo-case-detail { aspect-ratio: 488 / 300; height: auto; }
+/* pyrforos-motor.html's FIG.01 photo is a tight close-up (subject fills the
+   frame, no spare background) — img-slot-case-compact's default 1176/420
+   ratio cropped away too much of it. Compound selector (2 classes) so this
+   wins over .img-slot-case-compact regardless of source order, without
+   changing the shared placeholder used by other case-hero-compact pages. */
+.img-slot-case-compact.case-photo-motor-hero { aspect-ratio: 1176 / 620; height: auto; }
+
+/* For photos whose aspect ratio doesn't suit a wide crop (e.g. near-square flat-lays) —
+   shows the whole image, no cropping, sized down if needed rather than force-filled. */
+.case-photo-uncropped {
+  height: auto;
+  max-height: 640px;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   Gallery
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.gallery-grid .img-slot-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+.gallery-grid .img-slot-link img { transition: transform 0.4s ease; }
+.gallery-grid .img-slot-link:hover img,
+.gallery-grid .img-slot-link:focus-visible img { transform: scale(1.08); }
+
+.gallery-grid figcaption {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+/* ==========================================================================
+   Experience timeline
+   ========================================================================== */
+.timeline { max-width: 860px; }
+
+.timeline-more {
+  display: inline-block;
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+.timeline-more:hover,
+.timeline-more:focus-visible { color: var(--accent-bright); }
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 140px 24px minmax(0, 1fr);
+  gap: 0 20px;
+  padding-bottom: 44px;
+  position: relative;
+}
+.timeline li.timeline-last { padding-bottom: 0; }
+
+.timeline li:hover .timeline-body h3 { color: var(--accent); }
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.timeline-marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  box-sizing: border-box;
+  background: var(--bg);
+  margin-top: 6px;
+  z-index: 1;
+}
+.timeline-dot-filled {
+  border: none;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 195, 233, 0.2);
+  animation: timeline-pulse 2.4s ease-in-out infinite;
+}
+.timeline-dot-muted { border-color: rgba(255, 255, 255, 0.3); }
+.timeline-dot-paid {
+  border: none;
+  background: #b892f0;
+  box-shadow: 0 0 0 3px rgba(184, 146, 240, 0.25);
+  animation: timeline-pulse-paid 2.4s ease-in-out infinite;
+}
+
+@keyframes timeline-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(99, 195, 233, 0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(99, 195, 233, 0); }
+}
+
+@keyframes timeline-pulse-paid {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(184, 146, 240, 0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(184, 146, 240, 0); }
+}
+
+.timeline li:not(.timeline-last) .timeline-marker::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  bottom: -44px;
+  width: 1px;
+  background: var(--border-strong);
+}
+
+.timeline-body { overflow-wrap: break-word; }
+.timeline-body h3 { margin: 0 0 6px; font-size: 1.1rem; font-weight: 700; transition: color 0.2s ease; }
+.timeline-body p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* ==========================================================================
+   Publications
+   ========================================================================== */
+.publication-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: start;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 28px 32px;
+  background: var(--bg-raised);
+  max-width: 980px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.publication-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99, 195, 233, 0.35);
+}
+.publication-card + .publication-card { margin-top: 24px; }
+.publication-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.publication-card h3 { margin: 12px 0 10px; font-size: 1.25rem; font-weight: 700; }
+.publication-card p { margin: 0; color: var(--muted); font-size: 0.95rem; max-width: 640px; }
+/* Second paragraph in a publication card: the entry's own terms — what the
+   file is, or why there isn't one. Deliberately quieter than the summary
+   above it, so the card still reads summary-first. */
+.publication-card p + .publication-note {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--muted-2);
+}
+
+/* ==========================================================================
+   Skills
+   ========================================================================== */
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 72px;
+  /* margin-inline/padding-inline pair: the li below deliberately runs 16px wider
+     than the text column on each side so its hover band bleeds past the text.
+     Without this the li's right-hand bleed showed up as scroll width on the ul,
+     the grid and the container. Bleeding the ul by the same 16px and padding it
+     straight back leaves every child exactly where it was and contains the
+     overflow. */
+  margin-inline: -16px;
+  padding-inline: 16px;
+}
+.skills-list li {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 20px;
+  padding: 18px 16px;
+  margin: 0 -16px;
+  border-bottom: 1px solid var(--border);
+  border-radius: 4px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.skills-list li:hover {
+  background: rgba(99, 195, 233, 0.04);
+  border-color: rgba(99, 195, 233, 0.3);
+  transform: translateX(4px);
+}
+.skills-list h3 {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+.skills-list p { color: var(--muted); font-size: 0.9rem; }
+.skill-cert-mark {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1px solid rgba(99, 195, 233, 0.4);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+.contact .container { padding: 110px 32px 120px; }
+
+.contact-inner { text-align: center; }
+.contact-inner .section-title { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 20px; }
+
+.contact-eyebrow {
+  margin: 0 0 20px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contact-tagline {
+  margin: 0 auto 40px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 520px;
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.contact-actions .btn { font-family: var(--font-mono); font-size: 1rem; padding: 15px 30px; }
+.contact-actions .btn-primary { font-weight: 700; }
+.contact-actions .btn-ghost { font-weight: 500; }
+
+.contact-email {
+  margin: 20px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--muted);
+  user-select: all;
+}
+
+/* ==========================================================================
+   Back to top
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg-raised);
+  color: var(--accent);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  z-index: 90;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  border-color: rgba(99, 195, 233, 0.5);
+  background: rgba(99, 195, 233, 0.08);
+}
+
+@media (max-width: 720px) {
+  .back-to-top { right: 16px; bottom: 16px; }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer { border-top: 1px solid var(--border); }
+.footer-inner {
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-inner p {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted-2);
+}
+
+/* ==========================================================================
+   Scroll reveal (JS toggles [data-hidden]; respects prefers-reduced-motion)
+   ========================================================================== */
+[data-reveal][data-hidden] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Per-item stagger for list-based sections (About pillars, Skills, Experience
+   timeline, project card grids). JS assigns --i per child and toggles
+   [data-hidden]; mirrors the [data-reveal] pattern above one level down. */
+[data-stagger-item] {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: calc(min(var(--i, 0), 5) * 80ms);
+}
+[data-stagger-item][data-hidden] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* ==========================================================================
+   Case study / project hub pages
+   ========================================================================== */
+.case-hero .container { padding-top: 72px; padding-bottom: 0; }
+.case-hero-compact .container { padding-bottom: 56px; }
+
+.case-eyebrow {
+  margin: 0 0 20px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.case-eyebrow-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+.case-eyebrow-link:hover, .case-eyebrow-link:focus-visible { color: var(--accent-bright); }
+
+.case-title {
+  margin: 0 0 16px;
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.case-title-sm { font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.02; }
+
+.case-lede {
+  margin: 0 0 40px;
+  max-width: 640px;
+  color: var(--text-body);
+  font-size: 1.1rem;
+}
+
+.case-status {
+  display: inline-flex;
+  align-items: center;
+  margin: -20px 0 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.img-slot-case { width: 100%; aspect-ratio: 1240 / 480; }
+.img-slot-case-compact { width: 100%; aspect-ratio: 1176 / 420; }
+.img-slot-case-detail { width: 100%; aspect-ratio: 488 / 300; }
+.img-slot-feature { width: 100%; aspect-ratio: 534 / 280; }
+.img-slot-card { width: 100%; aspect-ratio: 374 / 190; }
+
+.case-hero .fig-caption,
+.case-hero-compact .fig-caption { margin-bottom: 0; }
+
+.case-stat-bar { border-top: 1px solid var(--border); background: var(--bg-raised); margin-top: 40px; }
+.case-stat-bar-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.case-stat-bar-3 { grid-template-columns: repeat(3, 1fr); }
+.case-stat { padding: 24px 28px; border-right: 1px solid var(--border); }
+.case-stat:first-child { padding-left: 0; }
+.case-stat:last-child { padding-right: 0; border-right: none; }
+.case-stat dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 8px;
+}
+.case-stat dd { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; color: var(--fg); }
+.case-stat-accent { color: var(--accent); }
+
+.case-section .container,
+.project-group .container { padding-top: 80px; padding-bottom: 0; }
+.case-section-last .container { padding-bottom: 110px; }
+
+.section-head,
+.case-section-head,
+.project-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 16px;
+}
+.case-section-head,
+.project-group-head { margin-bottom: 44px; }
+
+.case-number {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.project-group-role {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.case-cols-wide { grid-template-columns: 1.3fr 1fr; gap: 72px; }
+.case-prose p { margin: 0; color: var(--text-body); font-size: 1.05rem; }
+.case-prose p a,
+.publication-card p a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.case-prose p a:hover,
+.case-prose p a:focus-visible,
+.publication-card p a:hover,
+.publication-card p a:focus-visible { color: var(--fg); }
+.project-award { display: flex; align-items: center; gap: 12px; }
+.project-award span:last-child { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+.case-prose .project-award { padding: 16px 20px; margin-top: 24px; border: 1px solid rgba(99, 195, 233, 0.4); border-radius: 4px; background: rgba(99, 195, 233, 0.06); }
+.case-figure figcaption {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.case-scope-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: var(--bg-raised);
+  padding: 24px 28px;
+}
+.case-scope-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.case-scope-list { margin: 16px 0 0; display: flex; flex-direction: column; gap: 12px; }
+.case-scope-list li { position: relative; padding-left: 22px; color: var(--muted); font-size: 0.95rem; }
+.case-scope-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+.result-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 48px; }
+.result-card { border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; background: var(--bg-raised); padding: 28px; }
+.result-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.result-card-value { margin-top: 12px; font-family: var(--font-mono); font-size: 2rem; font-weight: 700; }
+.result-card-value-sm { font-size: 1.3rem; line-height: 1.35; }
+.result-card-highlight { border-color: rgba(99, 195, 233, 0.4); background: rgba(99, 195, 233, 0.06); }
+.result-card-highlight .result-card-label { color: var(--accent); }
+
+/* Generational comparison (dumbbell small multiples) — PIII (muted, context) vs
+   PIV (accent, the point). One legend for the set; per-tile SVG is decorative
+   (aria-hidden) since every value is already a direct text label. */
+.compare-legend {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.compare-legend-item { display: inline-flex; align-items: center; gap: 8px; }
+.compare-legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.compare-legend-dot-before { background: var(--muted); }
+.compare-legend-dot-after { background: var(--accent); }
+
+.compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 48px; }
+/* Cards are short without the chart. Tried a single row of four (the
+   Efficiency tile's "km/kWh" values are long enough that four equal columns
+   wrap it onto three lines even at full desktop width, breaking the
+   consistent two-line baseline) — two columns keeps every value on one
+   line and still lands the height win from dropping the chart. */
+.project-compare .compare-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 0; }
+@media (max-width: 480px) {
+  .project-compare .compare-grid { grid-template-columns: 1fr; }
+}
+.compare-tile { border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; background: var(--bg-raised); padding: 24px 28px; }
+.compare-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.compare-chart { display: block; width: 100%; height: auto; margin: 18px 0 14px; overflow: visible; }
+.compare-track { stroke: var(--border); stroke-width: 1.5; }
+.compare-connector { stroke: var(--border-strong); stroke-width: 2; stroke-linecap: round; }
+.compare-dot { stroke: var(--bg); stroke-width: 2; }
+.compare-dot-before { fill: var(--muted); }
+.compare-dot-after { fill: var(--accent); }
+
+.compare-values { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; font-family: var(--font-mono); }
+/* This one instance reads better in the page's own body font than the mono numeric-table
+   convention the rest of the .compare-* component uses elsewhere on the site. */
+.project-compare .compare-label,
+.project-compare .compare-values,
+.project-compare .sweep-axis-caption { font-family: var(--font-sans); }
+.compare-value-before { color: var(--muted); font-size: 0.92rem; text-decoration: line-through; text-decoration-color: rgba(150, 161, 173, 0.5); }
+.compare-arrow { color: var(--muted-2); font-size: 0.85rem; }
+.compare-value-after { color: var(--fg); font-size: 1.15rem; font-weight: 700; }
+.compare-delta {
+  margin-left: auto;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(99, 195, 233, 0.4);
+  background: rgba(99, 195, 233, 0.1);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* No-chart card: two-line old→new baseline, same shape regardless of value
+   length, delta sits right next to the number it describes instead of the
+   label. Scoped to the featured-project instance, which dropped the SVG
+   dumbbell chart the rest of the .compare-* component still uses.
+   No shared legend either — each line names its own generation, so a card
+   read on its own is still self-describing. */
+.project-compare .compare-tile { padding: 20px 24px; }
+.project-compare .compare-label { display: block; margin-bottom: 14px; }
+.project-compare .compare-values { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.project-compare .compare-value-line { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.project-compare .compare-gen {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--muted-2);
+  min-width: 26px;
+}
+.project-compare .compare-gen-after { color: var(--accent); }
+.project-compare .compare-arrow { font-size: 0.72rem; color: var(--muted-2); margin-left: -2px; }
+.project-compare .compare-delta { margin-left: 2px; }
+
+/* Layup-sweep 3D scatter (monocoque iteration history): mass x, failure
+   index y, displacement z — a real CSS-3D rotatable cube (perspective +
+   preserve-3d), not a library. Candidates render as muted dots, the
+   selected laminate in accent with a pulse ring. Points/ticks are
+   billboarded (counter-rotated) each frame so their text stays legible
+   at any group rotation — see monocoque-3d.js for the render loop. */
+.sweep-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: var(--bg-raised);
+  padding: 24px 28px;
+  margin-top: 40px;
+}
+.case-prose-note { margin: 0 0 20px; color: var(--text-body); font-size: 0.98rem; max-width: 860px; }
+
+.cube3d-hint {
+  margin: 2px 0 18px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.cube3d-outer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 0 16px;
+}
+/* .cube3d-scene-wrap is fluid (matches the card's width, up to a design
+   cap). .cube3d-scene keeps a fixed intrinsic size (the coordinate system
+   every translate3d value below is authored against); JS recomputes the
+   box's actual on-screen silhouette at the current rotation every frame
+   (rotateX/rotateY + perspective divide, done in JS to know the answer
+   before painting) and sets scene.transform to translate+scale it to fit
+   the wrap — so the fit tracks the viewing angle continuously rather than
+   a fixed width ratio. transform-origin stays default center, matching
+   the (0,0,0) origin every child's translate3d(--x,--y,--z) is anchored
+   to via left:50%/top:50%. */
+.cube3d-scene-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* .cube3d-scene below is a fixed 720x460 layout box on purpose — it is the
+     coordinate system every translate3d in the scene is authored against — and
+     monocoque-3d.js fits it to this wrap with a transform. A transform does not
+     change layout size, so the wrap kept reporting 720px of scroll width at any
+     width below that: 95px of overflow at 1440 and 21px of real horizontal page
+     scroll at 390. Clipping here is safe precisely because the JS has already
+     scaled the painted result to fit; there is nothing outside this box to see.
+     Do not "fix" this by making .cube3d-scene fluid — that breaks every
+     hard-coded coordinate inside it. */
+  overflow: hidden;
+}
+.cube3d-scene {
+  width: 720px;
+  height: 460px;
+  flex: none;
+  perspective: 1600px;
+  touch-action: none;
+  cursor: grab;
+  /* The billboarded axis-tick labels sit a little outside the 720x460 box, so
+     the scene reported 13px of scroll width of its own. The wrap above already
+     clips, so those 13px were never visible — but `visible` on a box wider than
+     its own content is exactly what makes a stray horizontal scrollbar possible
+     later. `clip` with a margin keeps the labels drawn and stops the box being
+     scrollable; browsers without overflow-clip-margin clip at the padding edge
+     instead, which costs at most the tail of one tick label at full rotation. */
+  overflow: clip;
+  overflow-clip-margin: 20px;
+}
+.cube3d-scene:active { cursor: grabbing; }
+.cube3d-group {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(-28deg);
+}
+
+.cube3d-edge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--border-strong);
+  transform-style: preserve-3d;
+}
+.cube3d-edge-x { width: 280px; margin-left: -140px; transform: translate3d(var(--x), var(--y), var(--z)); }
+.cube3d-edge-y { width: 280px; margin-left: -140px; transform: translate3d(var(--x), var(--y), var(--z)) rotateZ(90deg); }
+.cube3d-edge-z { width: 280px; margin-left: -140px; transform: translate3d(var(--x), var(--y), var(--z)) rotateY(90deg); }
+
+.cube3d-tick,
+.cube3d-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(var(--x), var(--y), var(--z));
+  transform-style: preserve-3d;
+}
+.cube3d-tick i,
+.cube3d-point i {
+  position: absolute;
+  display: block;
+  transform-style: preserve-3d;
+}
+.cube3d-tick i {
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-2);
+}
+
+.cube3d-point-dot {
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.8;
+}
+.cube3d-point-win .cube3d-point-dot {
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+/* .cube3d-point-pulse is the billboard target (sized/centered like the
+   dot, counter-rotated by JS same as .cube3d-point-dot); the animation
+   itself lives one level deeper on .cube3d-point-pulse-ring. Animated CSS
+   properties always win over an inline style on the *same* element, so if
+   the pulse's scale animation and the JS billboard rotation both targeted
+   .transform on one element, the animation would silently overwrite the
+   billboard rotation every frame — that's what made the ring tumble with
+   the box instead of staying camera-facing at off-default angles. */
+.cube3d-point-pulse {
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+}
+.cube3d-point-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.35;
+  animation: cube3d-pulse 2.4s ease-in-out infinite;
+}
+@keyframes cube3d-pulse {
+  0% { transform: scale(1); opacity: 0.35; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.cube3d-reset {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--muted-2);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.cube3d-reset:hover,
+.cube3d-reset:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
+/* Scene geometry (translate3d px values baked into inline styles) stays
+   fixed against a 720x460 design canvas; monocoque-3d.js continuously
+   scales .cube3d-scene via ResizeObserver to fill .cube3d-scene-wrap's
+   actual width (i.e. the card), so it works at any width, not just fixed
+   breakpoints — JS only ever writes .cube3d-group's own transform for
+   rotation, so the two never fight. */
+@media (max-width: 480px) {
+  .sweep-panel { padding-inline: 16px; }
+}
+
+.sweep-axis-caption {
+  margin: 12px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted-2);
+}
+
+.cube3d-table-details { margin-top: 16px; }
+.cube3d-table-details summary {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  cursor: pointer;
+  user-select: none;
+}
+.cube3d-table-wrap { overflow-x: auto; margin-top: 14px; }
+.cube3d-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.cube3d-table th,
+.cube3d-table td {
+  padding: 6px 12px 6px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-2);
+}
+.cube3d-table th { color: var(--muted); font-weight: 600; }
+.cube3d-row-win td { color: var(--accent); font-weight: 600; }
+
+/* Free-standing data tables inside a .sweep-panel (the aero iteration sweep and
+   the yaw sweep), as opposed to .cube3d-table / .motor-heat-table, which are
+   fallbacks underneath a visualisation. Same type treatment as those two on
+   purpose; the wrapper scrolls on a phone rather than squashing the columns.
+   .panel-title heads a panel that is not a numbered case section of its own. */
+.panel-title {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.case-table-wrap { overflow-x: auto; margin-top: 18px; }
+.case-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.case-table th,
+.case-table td {
+  padding: 6px 12px 6px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-2);
+}
+.case-table th { color: var(--muted); font-weight: 600; }
+.case-table-row-final td { color: var(--accent); font-weight: 600; }
+
+/* Motor operating-point heatmap (pyrforos-motor.html) — RPM x torque grid,
+   one div per populated bin (unpopulated bins render nothing, letting the
+   panel background show through), shaded by --op (time-at-point, log-scaled
+   in the generating script so the single dominant coast bin doesn't wash
+   out every other bin to invisible). */
+.motor-heat-block { display: flex; gap: 8px; align-items: stretch; }
+.motor-heat-yaxis { position: relative; width: 34px; flex: none; }
+.motor-heat-yaxis span {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-2);
+  white-space: nowrap;
+}
+.motor-heat-plot { flex: 1 1 auto; min-width: 0; }
+.motor-heat {
+  display: grid;
+  grid-template-columns: repeat(21, 1fr);
+  grid-template-rows: repeat(17, 1fr);
+  aspect-ratio: 21 / 17;
+  width: 100%;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.motor-heat-cell { background: var(--accent); opacity: var(--op, 1); }
+.motor-heat-cell-peak { outline: 1px solid var(--accent-bright); outline-offset: -1px; }
+.motor-heat-xaxis { position: relative; height: 18px; margin-top: 6px; }
+.motor-heat-xaxis span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-2);
+}
+.motor-heat-xaxis span:first-child { transform: translateX(0); }
+.motor-heat-xaxis span:last-child { transform: translateX(-100%); }
+
+.motor-heat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.motor-heat-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: var(--op, 1);
+  flex: none;
+}
+
+.motor-heat-table-details { margin-top: 14px; }
+.motor-heat-table-details summary {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  cursor: pointer;
+  user-select: none;
+}
+.motor-heat-table-wrap { overflow-x: auto; margin-top: 12px; }
+.motor-heat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+.motor-heat-table th,
+.motor-heat-table td {
+  padding: 6px 12px 6px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-2);
+}
+.motor-heat-table th { color: var(--muted); font-weight: 600; }
+
+.case-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  margin-top: 48px;
+}
+.case-nav-back { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); transition: color 0.2s ease; }
+.case-nav-back:hover, .case-nav-back:focus-visible { color: var(--accent); }
+.case-nav-next { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); transition: color 0.2s ease; }
+.case-nav-next:hover, .case-nav-next:focus-visible { color: var(--accent-bright); }
+
+/* Project hub */
+.project-feature-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-raised);
+  transition: border-color 0.2s ease;
+}
+.project-feature-card:hover,
+.project-feature-card:focus-visible { border-color: rgba(99, 195, 233, 0.5); }
+.project-feature-card .img-slot,
+.project-feature-card .case-photo { border-radius: 0; border: none; transition: transform 0.3s ease; }
+.project-feature-card:hover .img-slot,
+.project-feature-card:focus-visible .img-slot,
+.project-feature-card:hover .case-photo,
+.project-feature-card:focus-visible .case-photo { transform: scale(1.03); }
+.project-feature-body { padding: 32px 36px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.project-feature-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.project-feature-body h3 { margin: 12px 0 10px; font-size: 1.5rem; font-weight: 700; }
+.project-feature-body p { margin: 0 0 18px; color: var(--muted); font-size: 0.95rem; }
+.project-feature-link { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em; color: var(--accent); }
+
+.project-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.project-feature-card + .project-card-grid { margin-top: 24px; }
+.project-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-raised);
+  transition: border-color 0.2s ease;
+}
+.project-card:hover,
+.project-card:focus-visible { border-color: rgba(99, 195, 233, 0.5); }
+/* Two kinds of card have no case-study page, and they are hidden differently.
+
+   `.project-card-stub` is a subsystem with neither a page nor an image. It
+   lives in the shared cards-*.html partial so the inventory stays in the repo
+   in role order, but it is hidden everywhere it would render — the index and
+   the team hub alike. Widened from `.project-index .project-card-stub` on
+   2026-09-02: all eight TUCer stubs were checked and every one had an empty
+   data/ and evidence/ folder, so there was nothing to write them from and an
+   empty box on the hub was doing no work for a reader. The credit did not go
+   with the boxes — the eight are named in prose in tucer.html §03, which is
+   the difference between hiding them and deleting them.
+
+   `.project-card-nopage` is the case that rule anticipated: a subsystem that
+   has earned a real image but still has no page. Four of the eight TUCer stubs
+   became this on 2026-09-07, when the brake pedal, the quick-release body
+   latch and both steering-wheel renders turned up in the photo archive. They
+   show on the team hub, where a named subsystem with a real render is worth
+   looking at, and stay hidden on the index, which is reserved for cards that
+   lead somewhere — exactly the split the original `.project-index` prefix
+   drew. The remaining four (bodyshell analysis, door handle, 3D-printed seat,
+   lighting concept) are still `.project-card-stub`: no source image was found
+   for them. Promote one to `-nopage` when its image turns up, and drop the
+   class entirely when it earns a page and becomes an <a>.
+
+   Hidden in CSS rather than filtered in build.js so the partial stays plain
+   HTML with nothing for the build to parse; display: none also drops the card
+   from the accessibility tree, and stubs carry no <img>, so nothing extra is
+   fetched for them. main.js skips display: none children when it assigns
+   [data-stagger] delays, so hiding these leaves no gaps in the cascade. */
+.project-card-stub { display: none; }
+.project-index .project-card-nopage { display: none; }
+.project-card .img-slot,
+.project-card .case-photo { border-radius: 0; border: none; transition: transform 0.3s ease; }
+.project-card:hover .img-slot,
+.project-card:focus-visible .img-slot,
+.project-card:hover .case-photo,
+.project-card:focus-visible .case-photo { transform: scale(1.03); }
+.project-card-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.project-card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.project-card-body h3 { margin: 10px 0 8px; font-size: 1.15rem; font-weight: 700; }
+.project-card-body p { margin: 0 0 16px; color: var(--muted); font-size: 0.9rem; flex: 1; }
+.project-card-link { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent); }
+
+.project-feature-card:focus-visible,
+.project-card:focus-visible,
+.img-slot-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.img-slot-link { cursor: pointer; transition: border-color 0.2s ease; }
+.img-slot-link:hover { border-color: rgba(99, 195, 233, 0.5); }
+
+.footer-home-link { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted-2); transition: color 0.2s ease; }
+.footer-home-link:hover, .footer-home-link:focus-visible { color: var(--accent); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+/* Logo + all 7 nav items need ~823px to sit inline without overlap
+   (measured); switch to the hamburger well above that threshold. */
+@media (max-width: 960px) {
+  .nav-toggle { display: flex; }
+
+  .nav-menu {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .nav-menu.is-open { max-height: 480px; }
+  .nav-menu li { width: 100%; }
+  .nav-menu a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 12px 24px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 !important;
+  }
+  .nav-menu a.nav-contact { background: none; color: var(--accent); }
+}
+
+@media (max-width: 720px) {
+  .telemetry-inner,
+  .case-stat-bar-inner,
+  .cycle-steps,
+  .case-stat-bar-3 { grid-template-columns: 1fr; }
+  .telemetry-stat,
+  .cycle-step,
+  .case-stat { border-right: none !important; border-bottom: 1px solid var(--border); padding: 20px 0 !important; }
+  .telemetry-stat:last-child,
+  .cycle-step:last-child,
+  .case-stat:last-child { border-bottom: none; }
+}
+
+/* Card grids step 3 -> 2 -> 1. Without the middle step, three columns held on
+   down to 860px and squeezed cards to ~258px before dropping straight to one
+   full-width column. That was tolerable when the only long grid was Individual
+   projects; the team groups now carry 5 and 13 cards, so the tablet range
+   matters. Declared above the 860px block so the single-column rule below still
+   wins at the narrow end. */
+@media (max-width: 1080px) {
+  .project-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .project-grid,
+  .case-cols,
+  .case-cols-wide { grid-template-columns: 1fr; gap: 40px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .skills-list { grid-template-columns: 1fr; }
+  .publication-card { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 100px 20px minmax(0, 1fr); }
+  .project-feature-card { grid-template-columns: 1fr; }
+  .project-card-grid { grid-template-columns: 1fr; }
+  .project-group-head,
+  .case-section-head { flex-wrap: wrap; }
+  .project-group-role { margin-left: 0; }
+}
+
+@media (max-width: 480px) {
+  .skills-list li { grid-template-columns: 1fr; gap: 6px; }
+
+  /* Below the clamp()'s own floor (~686px), .hero-title stuck at its 3rem
+     minimum, which was wide enough to wrap "Michail-Angelos" itself onto a
+     second line — three lines total instead of the two the markup's <br>
+     intends, pushing the pitch and both CTAs below the fold. */
+  .hero-title { font-size: 2.4rem; }
+
+  /* "View Featured Project" and "Get in Touch" rendered at different widths
+     because .hero-actions sizes each .btn to its own text — full width was
+     an artefact of the longer label wrapping, not a deliberate design. Stack
+     and match them instead of leaving the mismatch to text length. */
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; text-align: center; }
+}
+
+/* ==========================================================================
+   Reduced motion — the JS-driven scroll-reveal and counters already check
+   prefers-reduced-motion before running; this covers the CSS-only motion
+   (pulse, hover/focus transitions, smooth-scroll, mobile-menu transition)
+   that has no JS gate.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .availability-dot,
+  .project-award-mark,
+  .timeline-dot-filled,
+  .timeline-dot-paid { animation: none; }
+  .cube3d-point-pulse-ring { animation: none; opacity: 0; }
+
+  .btn,
+  .nav-menu a,
+  .nav-menu,
+  .skills-list li,
+  .publication-card,
+  .gallery-grid .img-slot-link,
+  .gallery-grid .img-slot-link img,
+  .timeline-body h3,
+  .back-to-top { transition: none; }
+}
+
+/* Team / external links under a case hero figure */
+.case-links{margin:.9rem 0 0;font-size:.86rem;letter-spacing:.02em;color:var(--muted,#8b95a5)}
+.case-links a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+.case-links a:hover,.case-links a:focus-visible{color:var(--accent,#e8eef7)}
+
+/* ==========================================================================
+   Print
+   --------------------------------------------------------------------------
+   Recruiters print these. Until now they printed the screen theme: a near-black
+   ground, which most drivers either dump as a solid ink field or drop entirely,
+   taking the light text with it and leaving blank paper.
+
+   Four jobs. Put ink-on-white back. Drop everything that only works on a screen
+   — the sticky nav, the back-to-top button, the drag-to-rotate controls, the
+   background grid, the decorative watermark. Keep every FIG. caption on the
+   same page as the figure it belongs to. And write link targets out in full,
+   because a printed underline points nowhere.
+   ========================================================================== */
+@media print {
+  /* Tokens, re-pointed rather than overridden case by case, so anything using
+     var(--fg) or var(--border) comes along without a second rule. */
+  :root {
+    --bg: #ffffff;
+    --bg-raised: #ffffff;
+    --fg: #000000;
+    --text-body: #1a1a1a;
+    --muted: #333333;
+    --muted-2: #444444;
+    --accent: #0b0d10;
+    --accent-bright: #0b0d10;
+    --border: rgba(0, 0, 0, 0.25);
+    --border-strong: rgba(0, 0, 0, 0.4);
+  }
+
+  html, body { background: #fff !important; color: #000 !important; }
+  body { font-size: 11pt; }
+
+  /* Screen-only furniture. */
+  .bg-grid,
+  .skip-link,
+  .site-header,
+  .site-nav,
+  .nav-toggle,
+  .back-to-top,
+  .hero-watermark,
+  .cube3d-reset,
+  .cube3d-hint,
+  .sweep-axis-caption ~ .cube3d-reset,
+  .footer-home-link,
+  .case-nav { display: none !important; }
+
+  /* The 3D scatter is a drag-to-rotate object; on paper it prints as whatever
+     angle it happened to be left at. Its <details> table twin carries the same
+     19 rows and is the version worth printing, so force that open and drop the
+     scene. Same for the motor heat map. */
+  .cube3d-outer,
+  .motor-heat-block { display: none !important; }
+  .cube3d-table-details,
+  .motor-heat-table-details { display: block !important; }
+  .cube3d-table-details > summary,
+  .motor-heat-table-details > summary { display: none !important; }
+  .cube3d-table-details[open] > *,
+  .motor-heat-table-details > * { display: revert !important; }
+  .cube3d-table-wrap,
+  .motor-heat-table-wrap,
+  .case-table-wrap { overflow: visible !important; }
+
+  /* Reveal animations never run in a print context — make sure nothing is
+     still sitting at opacity 0 when the page is rasterised. */
+  [data-reveal], [data-hidden], [data-stagger-item] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* A figure and its caption belong on one sheet. */
+  figure, .case-figure, .gallery-grid figure, table, .sweep-panel {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .fig-caption, figcaption {
+    break-before: avoid;
+    page-break-before: avoid;
+    color: #333 !important;
+  }
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+
+  /* Images carry their own ink; keep them from running over a page edge and
+     from being scaled past the text column. */
+  img { max-width: 100% !important; height: auto !important; }
+  .case-photo { border-color: rgba(0, 0, 0, 0.25) !important; }
+
+  /* Panels and cards were dark fills; on paper they are outlines. */
+  .sweep-panel, .case-scope-card, .project-card, .publication-card,
+  .result-card, .case-stat-bar { background: #fff !important; }
+
+  /* Links: keep the text readable and say where it points. Internal .html
+     links are left bare — the domain is not settled (TODO.md A1) and printing
+     "projects.html" after every link is noise, not information. */
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+  a[href^="mailto:"]::after { content: " (" attr(href) ")"; }
+
+  /* Nothing below the fold should be pinned to a viewport that does not exist. */
+  .section { padding: 18pt 0 !important; }
+  .container { max-width: none !important; padding-inline: 0 !important; }
+}
+
+/* ==========================================================================
+   Flow-field viewer (PYRFOROS IV CFD), appended rather than a second
+   stylesheet. Every selector is namespaced .fv / .fv-*. See
+   goals/GOAL-FLOW-VIEWER.md.
+   ========================================================================== */
+.fv {
+  --fv-ground: #090C11;
+  --fv-ground-2: #0E131A;
+  --fv-ink: #E6EBF3;
+  --fv-ink-2: #96A2B4;
+  --fv-ink-3: #7E8CA0;
+  --fv-rule: #1C2430;
+  --fv-rule-2: #273141;
+  --fv-rule-3: #3B4A60;
+  --fv-accent: #3FD0E6;
+  --fv-warm: #F2A13C;
+  --fv-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--fv-ink)
+}
+
+.fv * {
+  box-sizing: border-box
+}
+
+.fv-fields {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px
+}
+
+.fv-fields .fv-lbl {
+  font-family: var(--fv-mono);
+  font-size: 9.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--fv-ink-3);
+  flex: 0 0 auto
+}
+
+.fv-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  background: var(--fv-rule);
+  border: 1px solid var(--fv-rule);
+  border-radius: 2px
+}
+
+.fv-seg button {
+  font-family: var(--fv-mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--fv-ink-2);
+  background: var(--fv-ground-2);
+  border: 0;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: color .15s, background .15s
+}
+
+.fv-seg button:hover {
+  color: var(--fv-ink);
+  background: #141B25
+}
+
+.fv-seg button[aria-pressed="true"] {
+  color: var(--fv-ground);
+  background: var(--fv-accent);
+  font-weight: 500
+}
+
+.fv-seg button[data-busy="1"] {
+  opacity: .55
+}
+
+.fv-seg button:focus-visible {
+  outline: 2px solid var(--fv-accent);
+  outline-offset: -2px
+}
+
+.fv-stage {
+  position: relative;
+  background:
+    radial-gradient(120% 100% at 50% 8%, #141C27 0%, #0B0F15 55%, #070A0E 100%);
+  border: 1px solid var(--fv-rule);
+  border-radius: 3px;
+  overflow: hidden;
+  height: clamp(400px, 64vh, 660px);
+  touch-action: none;
+  cursor: grab
+}
+
+.fv-stage.is-drag {
+  cursor: grabbing
+}
+
+.fv-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%
+}
+
+.fv-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--fv-rule-2);
+  pointer-events: none
+}
+
+.fv-c1 {
+  top: 10px;
+  left: 10px;
+  border-right: 0;
+  border-bottom: 0
+}
+
+.fv-c2 {
+  top: 10px;
+  right: 10px;
+  border-left: 0;
+  border-bottom: 0
+}
+
+.fv-c3 {
+  bottom: 10px;
+  left: 10px;
+  border-right: 0;
+  border-top: 0
+}
+
+.fv-c4 {
+  bottom: 10px;
+  right: 10px;
+  border-left: 0;
+  border-top: 0
+}
+
+.fv-load {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  font-family: var(--fv-mono);
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  color: var(--fv-ink-3);
+  background: var(--fv-ground);
+  transition: opacity .5s ease
+}
+
+.fv-load[hidden] {
+  display: none
+}
+
+.fv-bar {
+  width: 180px;
+  height: 2px;
+  background: var(--fv-rule-2);
+  overflow: hidden
+}
+
+.fv-bar i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--fv-accent);
+  transition: width .2s
+}
+
+.fv-ctl {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+  max-width: 150px
+}
+
+.fv-ctl .fv-grp {
+  font-family: var(--fv-mono);
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fv-ink-3);
+  margin: 2px 0 1px
+}
+
+.fv-ctl button {
+  font-family: var(--fv-mono);
+  font-size: 10.5px;
+  letter-spacing: .05em;
+  color: var(--fv-ink-2);
+  background: rgba(12, 17, 24, .76);
+  border: 1px solid var(--fv-rule-2);
+  border-radius: 2px;
+  padding: 6px 10px;
+  cursor: pointer;
+  text-align: left;
+  backdrop-filter: blur(6px);
+  transition: color .15s, border-color .15s
+}
+
+.fv-ctl button:hover {
+  color: var(--fv-ink);
+  border-color: var(--fv-rule-3)
+}
+
+.fv-ctl button[aria-pressed="true"] {
+  color: var(--fv-accent);
+  border-color: #27536080;
+  background: rgba(24, 48, 56, .62)
+}
+
+.fv-ctl button[data-busy="1"] {
+  color: var(--fv-ink-3);
+  font-style: italic
+}
+
+.fv-ctl button:focus-visible {
+  outline: 2px solid var(--fv-accent);
+  outline-offset: 2px
+}
+
+.fv-ctl hr {
+  border: 0;
+  border-top: 1px solid var(--fv-rule-2);
+  margin: 8px 0 2px
+}
+
+.fv-legends {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  display: flex;
+  gap: 24px;
+  pointer-events: none;
+  flex-wrap: wrap;
+  max-width: calc(100% - 190px)
+}
+
+.fv-leg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px
+}
+
+.fv-leg[hidden] {
+  display: none
+}
+
+.fv-leg .fv-nm {
+  font-family: var(--fv-mono);
+  font-size: 10px;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--fv-ink-2)
+}
+
+.fv-ramp {
+  width: 112px;
+  height: 7px;
+  border-radius: 1px;
+  border: 1px solid rgba(255, 255, 255, .14)
+}
+
+.fv-ends {
+  display: flex;
+  justify-content: space-between;
+  width: 112px;
+  font-family: var(--fv-mono);
+  font-size: 9.5px;
+  color: var(--fv-ink-3)
+}
+
+.fv-shells {
+  display: flex;
+  gap: 3px
+}
+
+.fv-shells i {
+  width: 16px;
+  height: 7px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 1px
+}
+
+.fv-scale {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  pointer-events: none;
+  text-align: right
+}
+
+.fv-scale .fv-tick {
+  height: 6px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-top: 0;
+  margin-left: auto
+}
+
+.fv-scale .fv-slab {
+  font-family: var(--fv-mono);
+  font-size: 10px;
+  color: var(--fv-ink-2);
+  margin-top: 4px
+}
+
+@media (max-width:640px) {
+  .fv-legends {
+    left: 14px;
+    bottom: 14px;
+    gap: 14px;
+    max-width: calc(100% - 28px)
+  }
+
+  .fv-ramp,
+  .fv-ends {
+    width: 88px
+  }
+
+  .fv-ctl {
+    right: 12px;
+    top: 12px;
+    max-width: 124px
+  }
+
+  .fv-ctl button {
+    padding: 5px 8px;
+    font-size: 10px
+  }
+
+  .fv-scale {
+    display: none
+  }
+
+  .fv-seg button {
+    padding: 6px 9px;
+    font-size: 10.5px
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .fv-bar i {
+    transition: none
+  }
+}

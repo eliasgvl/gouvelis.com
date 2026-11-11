@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PYRFOROS IV Concept & Architecture, Michail-Angelos Gkouvelis</title>
+<meta name="description" content="How PYRFOROS IV's form was derived from a point-mass lap-simulation energy budget before the detailed geometry was defined: the loss-mechanism split, the enclosed-wheel packaging decision, and the four architecture changes it produced.">
+<meta name="author" content="Michail-Angelos Gkouvelis">
+
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0d10">
+<link rel="canonical" href="https://gouvelis.com/mag/pyrforos-iv-concept.html">
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="PYRFOROS IV Concept & Architecture, Michail-Angelos Gkouvelis">
+<meta property="og:description" content="How PYRFOROS IV's form was derived from a point-mass lap-simulation energy budget before the detailed geometry was defined: the loss-mechanism split, the enclosed-wheel packaging decision, and the four architecture changes it produced.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+<meta property="og:url" content="https://gouvelis.com/mag/pyrforos-iv-concept.html">
+<meta property="og:locale" content="en_US">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PYRFOROS IV Concept & Architecture, Michail-Angelos Gkouvelis">
+<meta name="twitter:description" content="How PYRFOROS IV's form was derived from a point-mass lap-simulation energy budget before the detailed geometry was defined: the loss-mechanism split, the enclosed-wheel packaging decision, and the four architecture changes it produced.">
+<meta name="twitter:image" content="assets/img/og-cover.jpg">
+<meta name="twitter:image:alt" content="Michail-Angelos Gkouvelis, Head of Mechanical Engineering, Prometheus Eco Racing (NTUA)">
+
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo-mark.png" alt="M-A.G logo" class="logo-mark" width="56" height="56">
+      <span class="logo-text">GKOUVELIS</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="projects.html">← All Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  
+  <section class="section case-hero">
+    <div class="container" data-reveal>
+      <p class="case-eyebrow"><a href="prometheus.html" class="case-eyebrow-link">Prometheus Eco Racing</a> / PYRFOROS IV concept phase &middot; NTUA</p>
+      <h1 class="case-title case-title-sm">Concept &amp; Architecture<span class="dot">.</span></h1>
+      <p class="case-lede">PYRFOROS IV was governed by one rule before a single surface was drawn: every visible surface must earn its place by reducing energy consumption. A point-mass lap-simulation model, configured from the competition circuit&rsquo;s geometry and elevation profile, produced an energy loss budget first. The geometry, the architecture and the four decisions below all trace back to that budget.</p>
+      <img src="assets/img/pyrforos-iv-concept-hero.jpg" alt="Three CAD renders of the PYRFOROS IV exterior at design iterations V1, V3 and V7, shown in sequence, progressively tapering from a rounded initial form to a longer, more enclosed fastback silhouette" class="case-photo case-photo-uncropped" width="1500" height="366" loading="eager" fetchpriority="high" decoding="async">
+      <p class="fig-caption">FIG. 01 &middot; Exterior form at V1, V3 and V7, the same closed-loop CFD iteration that produced the frozen geometry on the <a href="pyrforos-iv.html">PYRFOROS IV case study</a></p>
+    </div>
+
+    <div class="case-stat-bar">
+      <dl class="container case-stat-bar-inner">
+        <div class="case-stat">
+          <dt>Aerodynamic drag</dt>
+          <dd><span class="case-stat-accent" data-count="48" data-decimals="0">48</span><span class="unit">% of lap energy</span></dd>
+        </div>
+        <div class="case-stat">
+          <dt>Rolling resistance (mass)</dt>
+          <dd><span class="case-stat-accent" data-count="26" data-decimals="0">26</span><span class="unit">% of lap energy</span></dd>
+        </div>
+        <div class="case-stat">
+          <dt>Powertrain / parasitic</dt>
+          <dd><span class="case-stat-accent" data-count="16" data-decimals="0">16</span><span class="unit">% of lap energy</span></dd>
+        </div>
+        <div class="case-stat">
+          <dt>Low-voltage systems</dt>
+          <dd><span class="case-stat-accent" data-count="10" data-decimals="0">10</span><span class="unit">% of lap energy</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">01</span>
+        <h2 class="section-title">The energy budget, before any geometry</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>Before a surface existed, the team built a point-mass lap-simulation model and evaluated an 80 kg target vehicle as a coupled system of aerodynamic, mass-dependent and powertrain energy losses across a full lap velocity profile. The model returned an unambiguous hierarchy: aerodynamic drag at 48% of total lap energy, rolling resistance from mass at 26%, powertrain and parasitic losses at 16%, low-voltage systems at 10%. Those are outputs for one modelled scenario on initial aerodynamic and rolling-resistance inputs, against the 80&nbsp;kg vehicle target, not fixed fractions of every lap.</p>
+          <p>That hierarchy, not a styling brief, is why the exterior was treated as the primary efficiency lever and the structure was addressed systemically rather than reinforced piecemeal. The full aerodynamic programme that followed from the 48% figure is on the <a href="aerodynamics.html">aerodynamics case study</a>; the structural response to the 26% figure is on the <a href="monocoque.html">monocoque case study</a>.</p>
+        </div>
+        <figure class="case-figure">
+          <img src="assets/img/pyrforos-iv-lap-energy-loss.png" alt="Line chart of simulated power consumption across six loss mechanisms over one lap of the competition circuit, plotted against distance, with drag and slope losses dominating the largest swings" class="case-photo img-slot-case-detail" width="1150" height="708" loading="lazy" decoding="async">
+          <figcaption>FIG. 02 &middot; Simulated power consumption by loss mechanism, one lap, 80 kg target</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">02</span>
+        <h2 class="section-title">The circuit set the boundary condition</h2>
+      </div>
+      <div class="case-prose">
+        <p>The lap-simulation model was not run against a generic drive cycle. It was configured from the competition circuit itself: corner radii and elevation gradient fed the velocity profile and force inputs directly, rather than being approximated. FIG. 03 is that circuit, coloured by slope; the tight, undulating loop it shows is the boundary condition every downstream target in Section 1 was checked against.</p>
+      </div>
+      <figure class="case-figure">
+        <img src="assets/img/pyrforos-iv-track-map.png" alt="Slope-coloured track map of the competition circuit plotted in geographical coordinates, a tight undulating loop running from dark blue through green and orange to red, with the starting point marked" class="case-photo case-photo-uncropped" width="1100" height="599" loading="lazy" decoding="async">
+        <figcaption>FIG. 03 &middot; Circuit geometry and elevation, coloured by slope, used as the boundary condition for every lap simulation</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section case-section">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">03</span>
+        <h2 class="section-title">Regulated packaging as a design generator</h2>
+      </div>
+      <div class="case-cols">
+        <div class="case-prose">
+          <p>Fully enclosing all four wheels was not a styling choice. It was a direct response to the simulation finding that exposed, rotating tyres are responsible for a disproportionate share of total vehicle drag, and full aerodynamic concealment was set as a non-negotiable objective at project inception, before the exterior was drawn.</p>
+          <p>Enclosing the steerable front wheels inside an Urban Concept footprint is a spatial conflict: the enclosure has to fully shield the tyre from the free stream while guaranteeing zero mechanical contact at full steering lock. That single packaging constraint, not aesthetic preference, set the four primary dimensional parameters of the vehicle.</p>
+        </div>
+        <div class="case-scope-card">
+          <span class="case-scope-label">One constraint, four parameters</span>
+          <ul class="case-scope-list">
+            <li><strong>Front and rear track widths:</strong> set by the swept volume of the steerable wheel at full lock, plus clearance to prevent rubbing under combined steer and suspension travel.</li>
+            <li><strong>Wheelbase:</strong> set by the swept envelope of the front axle at full lock, combined with the minimum-radius turn specification the course layout imposes.</li>
+            <li><strong>Steering geometry:</strong> knuckle geometry, tie-rod length and rack offset solved simultaneously with the wheel-arch profile for near-ideal Ackermann tracking, detailed on the <a href="suspension.html">suspension case study</a>.</li>
+            <li><strong>Body stance and plan-view silhouette:</strong> once the wheel swept volumes were fixed, fuselage width, nose width and tail taper followed from the surfaces that smoothly return the free-stream flow around each enclosure.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section case-section case-section-last">
+    <div class="container" data-reveal>
+      <div class="case-section-head">
+        <span class="case-number">04</span>
+        <h2 class="section-title">Four decisions, closed before manufacture</h2>
+      </div>
+      <div class="case-cols case-cols-wide">
+        <div class="case-prose">
+          <p>Before committing PYRFOROS IV to manufacture, the team ran a structured root-cause analysis of the previous car, a steel-spaceframe platform with a non-structural fairing, and produced the engineering case for four architecture changes. Each carries a stated rationale tied to the energy budget above; the analysis and test evidence behind them is in the linked subsystem studies.</p>
+        </div>
+      </div>
+      <div class="case-table-wrap">
+        <table class="case-table">
+          <thead>
+            <tr><th scope="col">Parameter</th><th scope="col">PYRFOROS III</th><th scope="col">PYRFOROS IV</th><th scope="col">Rationale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Chassis architecture</td><td>Steel spaceframe</td><td>Integrated CFRP monocoque</td><td>Consolidated structural and aerodynamic functions into one shell, eliminating redundant load paths.</td></tr>
+            <tr><td>Suspension system</td><td>Rigid, un-sprung</td><td>Double-wishbone front, trailing-arm rear</td><td>Isolated road-shock energy before it reached the chassis, enabling a lighter, down-gauged layup.</td></tr>
+            <tr><td>Wheel configuration</td><td>Exposed, outboard</td><td>Fully enclosed within body blisters</td><td>Enclosed wheels still account for 40.3% of residual drag even concealed; exposed wheels would have raised total drag substantially further.</td></tr>
+            <tr><td>Drivetrain coupling</td><td>Direct axle</td><td>6:1 belt transmission</td><td>The reduction ratio was selected by overlaying the motor's efficiency map on the lap-simulation velocity profile, sizing a smaller motor and cutting a reported 20 kg from powertrain mass against the previous generation.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sweep-axis-caption">Source: VDA technical submission, Table 4 (Engineering parameter evolution, PIII vs. PIV) and the belt-drive ratio selection note in the same section.</p>
+      <nav class="case-nav" aria-label="Case study navigation">
+        <a href="pyrforos-iv.html" class="case-nav-back">&larr; PYRFOROS IV</a>
+        <a href="monocoque.html" class="case-nav-next">Next: Monocoque &amp; composites &rarr;</a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Michail-Angelos Gkouvelis</p>
+    <a href="index.html" class="footer-home-link">← Back to home</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
